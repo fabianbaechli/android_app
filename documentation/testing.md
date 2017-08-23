@@ -29,4 +29,15 @@ Wir testen im Umkehrschluss ihre App, mit ihren Testcases.
 | Die Ansicht "Closed Todos" kann mit Swipe nach Rechts geöffnet werden       | :x: |
 | In der Ansicht "Closed Todos" werden alle abgeschlossenen Todos aufgelistet | :x: |
 
-
+| Sport Todo Test Cases                                                                       | :x: |
+|---------------------------------------------------------------------------------------------|:---:|
+| Sport Todo wird in der Liste mit Anzahl verbleibenden Schritten angezeigt                   | :x: |
+| Schrittezähler kann über Button in der Liste gestartet werden                               | :x: |
+| Todo+ zählt die Anzahl Schritte während der Schrittzähler des Todos läuft                   | :x: |
+| Die Schritte werden korrekt gezählt und in der Liste Live angezeigt                         | :x: |
+| Über den "Pause"-Button kann der Schrittzähler pausiert werden                              | :x: |
+| Erneutes Klicken auf den "Start"-Button startet den Schrittzähler wieder                    | :x: |
+| Die Zahl der verbleibenden Schritte ist entsprechend der bereits abgelaufenen               | :x: |
+| Sind die Schritte abgelaufen, wird eine Benachrichtigung geschickt                          | :x: |
+| In der Liste wird angezeigt, wie lange man gebraucht hat, um die Anzahl Schritte abzulaufen | :x: |
+| Beim Klicken der Checkbox wird das Sport-Todo in die "Closed Todos"-Ansicht verschoben      | :x: |
