@@ -26,7 +26,14 @@ Sie sind, "Remind me on a day", "Priority", "Fitness Todo"
 
 (will be replaced with screenshots as soon as the frontend is ready)
 
+Startseite mit diversen Todos
+![startpage](Zeichnung1.png)
 
-![startpage](00-Home.jpg)
-![create new entry dialog](01-Page.jpg)
+Startseite mit aktivem Sport Todo
+![active_sport_todo](Zeichnung2.png)
 
+Neues Todo erstellen
+![new_todo](Zeichnung3.png)
+
+Erldedigte Todos
+![finished_todos](Zeichnung4.png)
