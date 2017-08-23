@@ -29,11 +29,6 @@ Sie sind, "Remind me on a day", "Priority", "Fitness Todo"
 Startseite mit diversen Todos
 ![startpage](Zeichnung1.png)
 
-Startseite mit aktivem Sport Todo
-![active_sport_todo](Zeichnung2.png)
-
 Neues Todo erstellen
 ![new_todo](Zeichnung3.png)
 
-Erldedigte Todos
-![finished_todos](Zeichnung4.png)
