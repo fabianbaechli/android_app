@@ -33,6 +33,7 @@ Sie sind, "Remind me on a day", "Priority", "Fitness Todo"
 # Whitebox testing
 Die App lassen wir von einem anderen Team nach diesen Cases testen.
 Wir testen im Umkehrschluss ihre App, mit ihren Testcases.
+
 |                  Test case                 | State |
 |:------------------------------------------:|:-----:|
 | Ein Todo erstellen                         |  :x:  |
