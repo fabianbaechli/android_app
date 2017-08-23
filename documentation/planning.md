@@ -24,13 +24,11 @@ Sie sind, "Remind me on a day", "Priority", "Fitness Todo"
 - __Kurzbeschreibung:__ An extended Todo App. Created to help you reach your goals
 - __Mockups:__
 
-(will be replaced with screenshots as soon as the frontend is ready)
+Startseite mit diversen Todo
 
-Startseite mit diversen Todos
-
-![startpage](Zeichnung1.png)
+![startpage](images/Zeichnung1.png)
 
 Neues Todo erstellen
 
-![new_todo](Zeichnung3.png)
+![new_todo](images/Zeichnung3.png)
 
