@@ -27,8 +27,10 @@ Sie sind, "Remind me on a day", "Priority", "Fitness Todo"
 (will be replaced with screenshots as soon as the frontend is ready)
 
 Startseite mit diversen Todos
+
 ![startpage](Zeichnung1.png)
 
 Neues Todo erstellen
+
 ![new_todo](Zeichnung3.png)
 
