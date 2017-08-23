@@ -25,6 +25,8 @@ Sie sind, "Remind me on a day", "Priority", "Fitness Todo"
 - __Mockups:__
 
 (will be replaced with screenshots as soon as the frontend is ready)
+
+
 ![startpage](00-Home.jpg)
 ![create new entry dialog](01-Page.jpg)
 
