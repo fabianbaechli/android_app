@@ -30,3 +30,13 @@ Sie sind, "Remind me on a day", "Priority", "Fitness Todo"
 ![startpage](00-Home.jpg)
 ![create new entry dialog](01-Page.jpg)
 
+# Testing
+|                  Test case                 | State |
+|:------------------------------------------:|:-----:|
+| Ein Todo erstellen                         |  :x:  |
+| Fälligkeitszeitpunkt festlegen             |  :x:  |
+| Schritte werden korrekt gezählt            |  :x:  |
+| Priorität festlegen bei Todo               |  :x:  |
+| Benachrichtigung wenn Todo fällig          |  :x:  |
+| Benachrichtigung wenn Schrittzahl erreicht |  :x:  |
+| Anzahl Schritte festlegen bei Sport Todo   |  :x:  |
