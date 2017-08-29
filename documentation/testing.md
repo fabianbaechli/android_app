@@ -1,5 +1,5 @@
 # Testing
-Dieses Dokument beschreibt unser vorgehen beim Test unserer Android App "Todo+", die im Rahmen eines ÜKs im ZLI entwickelt wird.
+Dieses Dokument beschreibt unser Vorgehen beim Test unserer Android App "Todo+", die im Rahmen eines ÜKs im ZLI entwickelt wird.
 ## Whitebox Testing
 | Create Todo Test Cases                               | State |
 |------------------------------------------------------|:-----:|
