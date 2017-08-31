@@ -19,7 +19,6 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="17dp" />
 
@@ -43,4 +42,5 @@
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="64dp" />
     </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

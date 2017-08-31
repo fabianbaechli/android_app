@@ -11,6 +11,7 @@ import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,15 +20,20 @@ public class MainActivity extends AppCompatActivity {
     EditText editTxt;
     ListView list;
 
-    SimpleAdapter adapter2;
+    //SimpleAdapter adapter2;
 
-    private ArrayAdapter<String> adapter;
-    private ArrayList<String> arrayList;
+    //private ArrayAdapter<String> adapter;
+    //private ArrayList<String> arrayList;
+    //private List<Map<String, String>> data;
 
-    private List<Map<String, String>> data;
+    Map<Integer,String> myMap = new LinkedHashMap<>();
+    MyCustomAdapter adapter = new MyCustomAdapter(myMap, this);
+
+    int count = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -35,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         btnAdd = (Button) findViewById(R.id.btnAdd);
         list = (ListView) findViewById(R.id.list);
         editTxt = (EditText) findViewById(R.id.editText);
-        arrayList = new ArrayList<>();
+        //arrayList = new ArrayList<>();
 
         /*
         // Adapter: You need three parameters 'the context, id of the layout (it will be where the data is shown),
@@ -54,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
+
 
         //Verison TWO
         data = new ArrayList<>();
@@ -79,15 +86,21 @@ public class MainActivity extends AppCompatActivity {
         */
 
         //generate list
-        ArrayList<String> list = new ArrayList<String>();
-        list.add("item1");
-        list.add("item2");
+        //myMap.put(0, "Oben;Die Beschreibung unten");
+        //myMap.put(1, "Oben 2;Die Beschreibung unten 2");
 
-        //instantiate custom adapter
-        MyCustomAdapter adapter = new MyCustomAdapter(list, this);
+        //Assign Adapter
+        list.setAdapter(adapter);
 
-        //handle listview and assign adapter
-        ListView lView = (ListView)findViewById(R.id.list);
-        lView.setAdapter(adapter);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                count++;
+                String value = editTxt.getText().toString();
+
+                myMap.put(count, value + ";Der untere Text.");
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 }

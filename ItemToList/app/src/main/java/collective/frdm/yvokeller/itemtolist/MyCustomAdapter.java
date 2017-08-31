@@ -10,18 +10,19 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Created by yvokeller on 31.08.17.
  */
 
 public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
-    private ArrayList<String> list = new ArrayList<String>();
+    private Map<Integer,String> list = new LinkedHashMap<>();
     private Context context;
 
-
-
-    public MyCustomAdapter(ArrayList<String> list, Context context) {
+    public MyCustomAdapter(Map<Integer,String> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -52,28 +53,30 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
         }
 
         //Handle TextView and display string from your list
-        TextView listItemText = (TextView)view.findViewById(R.id.list_item_string);
-        listItemText.setText(list.get(position));
+        TextView listItemText = view.findViewById(R.id.list_item_string);
+        TextView listItemText2 = view.findViewById(R.id.list_item_string_2);
+
+
+        String value = list.get(position);
+        String[] parts = value.split(";");
+        String part1 = parts[0];
+        String part2 = parts[1];
+
+        listItemText.setText(part1);
+        listItemText2.setText(part2);
+
 
         //Handle buttons and add onClickListeners
-        Button deleteBtn = (Button)view.findViewById(R.id.delete_btn);
-        Button addBtn = (Button)view.findViewById(R.id.add_btn);
+        Button editBtn = (Button)view.findViewById(R.id.btnEdit);
 
-        deleteBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                //do something
-                list.remove(position); //or some other task
-                notifyDataSetChanged();
-            }
-        });
-        addBtn.setOnClickListener(new View.OnClickListener(){
+        editBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 //do something
                 notifyDataSetChanged();
             }
         });
+
 
         return view;
     }
