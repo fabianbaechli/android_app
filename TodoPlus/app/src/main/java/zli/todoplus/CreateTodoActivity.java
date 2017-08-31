@@ -8,6 +8,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.app.Fragment;
 import android.view.MenuItem;
+
 import java.util.ArrayList;
 
 public class CreateTodoActivity extends AppCompatActivity {
@@ -19,20 +20,14 @@ public class CreateTodoActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             removeActiveCenterFragments();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
             switch (item.getItemId()) {
                 case R.id.navigation_dashboard:
-                    NormalTodoFragment hello = new NormalTodoFragment();
-                    fragmentTransaction.add(R.id.fragment_normal, hello, "HELLO");
-                    fragmentTransaction.commit();
-                    fragments.add(hello);
+                    displayFragment(new NormalTodoFragment());
                     return true;
                 case R.id.navigation_notifications:
-                    SportTodoFragment sportTodoFragment = new SportTodoFragment();
-                    fragmentTransaction.add(R.id.fragment_normal, sportTodoFragment, "HELLO");
-                    fragments.add(sportTodoFragment);
-                    fragmentTransaction.commit();
+                    displayFragment(new SportTodoFragment());
+                    return true;
             }
             return false;
         }
@@ -45,12 +40,9 @@ public class CreateTodoActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        NormalTodoFragment hello = new NormalTodoFragment();
-        fragmentTransaction.add(R.id.fragment_normal, hello, "HELLO");
-        fragments.add(hello);
-        fragmentTransaction.commit();
+        displayFragment(new NormalTodoFragment());
     }
+
     private void removeActiveCenterFragments() {
         if (fragments.size() > 0) {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -60,5 +52,12 @@ public class CreateTodoActivity extends AppCompatActivity {
             fragments.clear();
             fragmentTransaction.commit();
         }
+    }
+
+    private void displayFragment(Fragment fragmentToDisplay) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.fragment_normal, fragmentToDisplay, "Added Fragment");
+        fragments.add(fragmentToDisplay);
+        fragmentTransaction.commit();
     }
 }
