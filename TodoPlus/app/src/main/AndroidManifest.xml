@@ -19,7 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddTodoActivity"></activity>
+        <activity
+            android:name=".CreateTodoActivity"
+            android:label="@string/title_activity_create_todo"></activity>
     </application>
 
 </manifest>

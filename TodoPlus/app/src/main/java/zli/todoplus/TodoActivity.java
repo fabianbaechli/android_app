@@ -20,7 +20,7 @@ public class TodoActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Your Todos");
-        final Intent changeActivity = new Intent(this, AddTodoActivity.class);
+        final Intent changeActivity = new Intent(this, CreateTodoActivity.class);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

@@ -1,0 +1,48 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/normalTodoFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="zli.todoplus.NormalTodoFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <Switch
+            android:id="@+id/switch5"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/todoDescription"
+            android:layout_below="@+id/todoDescription"
+            android:layout_gravity="center"
+            android:layout_marginTop="72dp"
+            android:text="Remind me on a day" />
+
+        <Switch
+            android:id="@+id/switch6"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/switch5"
+            android:layout_below="@+id/switch5"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:text="Priority" />
+
+        <EditText
+            android:id="@+id/todoDescription"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="27dp"
+            android:ems="10"
+            android:hint="Todo description"
+            android:inputType="textPersonName" />
+    </RelativeLayout>
+
+</FrameLayout>
