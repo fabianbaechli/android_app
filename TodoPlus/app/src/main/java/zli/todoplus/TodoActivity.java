@@ -16,8 +16,8 @@ public class TodoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Your Todos");
         final Intent changeActivity = new Intent(this, AddTodoActivity.class);

@@ -6,4 +6,25 @@
     android:layout_height="match_parent"
     tools:context="zli.todoplus.AddTodoActivity">
 
+    <RelativeLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <EditText
+            android:id="@+id/todoNameInputField"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:ems="10"
+            android:hint="Todo Description"
+            android:inputType="textShortMessage"
+            android:selectAllOnFocus="false"
+            android:singleLine="false"
+            android:textAllCaps="false"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
