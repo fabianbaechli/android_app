@@ -9,22 +9,50 @@
     <RelativeLayout
         android:layout_width="368dp"
         android:layout_height="495dp"
-        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteX="5dp"
         tools:layout_editor_absoluteY="8dp">
 
         <EditText
-            android:id="@+id/todoNameInputField"
-            android:layout_width="350dp"
+            android:id="@+id/editText4"
+            android:layout_width="340dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:ems="10"
-            android:hint="Todo Description"
-            android:inputType="textShortMessage"
-            android:selectAllOnFocus="false"
-            android:singleLine="false"
-            android:textAllCaps="false"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="27dp"
+            android:ems="10"
+            android:hint="Todo description"
+            android:inputType="textPersonName" />
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/switch3"
+            android:layout_below="@+id/switch3"
+            android:layout_gravity="center"
+            android:layout_marginTop="14dp"
+            android:text="Priority" />
+
+        <Switch
+            android:id="@+id/switch3"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/switch2"
+            android:layout_below="@+id/switch2"
+            android:layout_gravity="center"
+            android:layout_marginTop="13dp"
+            android:text="Remind me on a day" />
+
+        <Switch
+            android:id="@+id/switch2"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Sport Todo"
+            android:layout_marginTop="22dp"
+            android:layout_below="@+id/editText4"
+            android:layout_alignStart="@+id/editText4" />
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
