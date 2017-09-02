@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/yvokeller/Documents/GitHub/android_app/ItemToList/app/build/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/yvokeller/.android/build-cache/d86e9cbe0b878be1042451f6618419492e9a6e0b/output/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/yvokeller/Documents/GitHub/android_app/ItemToList/app/build/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/yvokeller/.android/build-cache/d86e9cbe0b878be1042451f6618419492e9a6e0b/output/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/yvokeller/Documents/GitHub/android_app/ItemToList/app/build/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/yvokeller/.android/build-cache/d86e9cbe0b878be1042451f6618419492e9a6e0b/output/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/Users/yvokeller/Documents/GitHub/android_app/ItemToList/app/build/intermediates/res/merged/debug/layout-v21/notification_action.xml",
+        "source": "/Users/yvokeller/.android/build-cache/d86e9cbe0b878be1042451f6618419492e9a6e0b/output/res/layout-v21/notification_action.xml"
+    }
+]

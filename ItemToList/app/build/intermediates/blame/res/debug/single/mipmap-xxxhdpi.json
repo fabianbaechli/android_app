@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/yvokeller/Documents/GitHub/android_app/ItemToList/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher.png",
+        "source": "/Users/yvokeller/Documents/GitHub/android_app/ItemToList/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/yvokeller/Documents/GitHub/android_app/ItemToList/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher_round.png",
+        "source": "/Users/yvokeller/Documents/GitHub/android_app/ItemToList/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
+    }
+]

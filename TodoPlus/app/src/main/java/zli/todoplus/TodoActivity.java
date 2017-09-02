@@ -9,6 +9,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.util.Date;
+
+import zli.todoplus.objects.DateTodo;
+import zli.todoplus.objects.Todo;
+import zli.todoplus.objects.TodoManager;
 
 public class TodoActivity extends AppCompatActivity {
 
@@ -29,6 +36,10 @@ public class TodoActivity extends AppCompatActivity {
                 startActivity(changeActivity);
             }
         });
+
+
+        testTodo();
+
     }
 
     @Override
@@ -51,5 +62,12 @@ public class TodoActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void testTodo(){
+        TodoManager manager = new TodoManager();
+        manager.addTodo(new DateTodo("Title", "Pending", true, new Date()), getApplicationContext());
+        TextView txtView = (TextView) findViewById(R.id.txtOutput);
+        txtView.setText("Done");
     }
 }
