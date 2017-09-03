@@ -3,6 +3,7 @@ package zli.todoplus;
 import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import zli.todoplus.objects.DateTodo;
+import zli.todoplus.objects.SportTodo;
+import zli.todoplus.objects.Todo;
+import zli.todoplus.objects.TodoManager;
+
 public class NormalTodoFragment extends Fragment implements View.OnClickListener {
     private boolean isPriorityEntry = false;
     private boolean reminderDateSet = false;
@@ -24,7 +30,8 @@ public class NormalTodoFragment extends Fragment implements View.OnClickListener
     private Switch reminderToggle;
     private Button setReminderButton;
     private EditText reminderInfo;
-
+    private EditText todoDescription;
+    private FloatingActionButton createButton;
     Calendar myCalendar = Calendar.getInstance();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,12 +41,15 @@ public class NormalTodoFragment extends Fragment implements View.OnClickListener
         reminderToggle = view.findViewById(R.id.remindMeOnADayToggle);
         setReminderButton = view.findViewById(R.id.setReminderButton);
         reminderInfo = view.findViewById(R.id.reminderInfo);
+        createButton = view.findViewById(R.id.createTodoFab);
+        todoDescription = view.findViewById(R.id.todoDescription);
 
         // Sets the click listener for the elements, which calls onClick in this class
         priorityToggle.setOnClickListener(this);
         reminderToggle.setOnClickListener(this);
         setReminderButton.setEnabled(false);
         setReminderButton.setOnClickListener(this);
+        createButton.setOnClickListener(this);
         return view;
     }
 
@@ -65,6 +75,17 @@ public class NormalTodoFragment extends Fragment implements View.OnClickListener
                 new DatePickerDialog(getActivity(), date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                break;
+            case R.id.createTodoFab:
+                // If the tododescription is not empty
+                if (!todoDescription.getText().toString().equals("")) {
+                    System.out.println("created todo");
+
+                    TodoManager manager = new TodoManager();
+                    manager.addTodo(new DateTodo(todoDescription.getText().toString(), "pending",
+                            isPriorityEntry, myCalendar.getTime()), getActivity());
+
+                }
         }
     }
 

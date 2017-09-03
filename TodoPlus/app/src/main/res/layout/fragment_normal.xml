@@ -9,11 +9,13 @@
     <!-- TODO: Update blank fragment layout -->
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/create_todo_fab"
+        android:id="@+id/createTodoFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        android:clickable="true"
+        android:visibility="visible"
         app:fabSize="normal"
         app:srcCompat="@drawable/ic_action_name"
         tools:src="@drawable/ic_action_name" />

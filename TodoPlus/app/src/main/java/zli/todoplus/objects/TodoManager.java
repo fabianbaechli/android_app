@@ -25,7 +25,7 @@ import zli.todoplus.database.TodoDBOpenHelper;
 public class TodoManager {
     List<Todo> todoList = new ArrayList<>();
 
-    Map<Integer,String> list = new LinkedHashMap<>();
+    Map<Integer, String> list = new LinkedHashMap<>();
 
     TodoDBOpenHelper oDbHelper;
 
@@ -36,11 +36,11 @@ public class TodoManager {
         //Insert To DB
         oDbHelper = new TodoDBOpenHelper(context);
 
-        if(todo.getType().equals("date")){
+        if (todo.getType().equals("date")) {
             //Date Todo
             DateTodo newTodo = (DateTodo) todo;
             insertDateTodo(newTodo);
-        } else if(todo.getType().equals("sport")){
+        } else if (todo.getType().equals("sport")) {
             //Sport Todo
             SportTodo newTodo = (SportTodo) todo;
             insertSportTodo(newTodo);
@@ -49,7 +49,7 @@ public class TodoManager {
         return true;
     }
 
-    public Map returnData(){
+    public Map returnData() {
         SQLiteDatabase db = oDbHelper.getReadableDatabase();
         int count = 0;
 
@@ -80,7 +80,7 @@ public class TodoManager {
         String content = "";
 
 
-        while(cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             //vars
             long id = cursor.getLong(cursor.getColumnIndexOrThrow(DBScheme.DateTodo._ID));
             String title = cursor.getString(cursor.getColumnIndexOrThrow(DBScheme.DateTodo.COLUMN_NAME_TITLE));
@@ -126,7 +126,7 @@ public class TodoManager {
         );
 
         List itemIds = new ArrayList<>();
-        while(cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             long id = cursor.getLong(cursor.getColumnIndexOrThrow(DBScheme.SportTodo._ID));
             String title = cursor.getString(cursor.getColumnIndexOrThrow(DBScheme.SportTodo.COLUMN_NAME_TITLE));
             String creationDate = cursor.getString(cursor.getColumnIndexOrThrow(DBScheme.SportTodo.COLUMN_NAME_CREATION_DATE));
@@ -146,23 +146,8 @@ public class TodoManager {
         return list;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //Function To remove Todo. Is automatically removed from database.
-    public boolean removeTodo(Todo todo){
+    public boolean removeTodo(Todo todo) {
         todoList.remove(todo);
 
         return true;
@@ -236,7 +221,7 @@ public class TodoManager {
         );
 
         List itemIds = new ArrayList<>();
-        while(cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             long id = cursor.getLong(cursor.getColumnIndexOrThrow(DBScheme.DateTodo._ID));
             String title = cursor.getString(cursor.getColumnIndexOrThrow(DBScheme.DateTodo.COLUMN_NAME_TITLE));
             String creationDate = cursor.getString(cursor.getColumnIndexOrThrow(DBScheme.DateTodo.COLUMN_NAME_CREATION_DATE));
@@ -250,7 +235,7 @@ public class TodoManager {
 
         //txtOutput.setText("Length: " + itemIds.size());
 
-        for(int i = 0; i < itemIds.size(); i++) {
+        for (int i = 0; i < itemIds.size(); i++) {
             //txtOutput.setText(String.valueOf(itemIds.get(i)));
         }
 
@@ -290,7 +275,7 @@ public class TodoManager {
         );
 
         List itemIds = new ArrayList<>();
-        while(cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             long id = cursor.getLong(cursor.getColumnIndexOrThrow(DBScheme.SportTodo._ID));
             String title = cursor.getString(cursor.getColumnIndexOrThrow(DBScheme.SportTodo.COLUMN_NAME_TITLE));
             String creationDate = cursor.getString(cursor.getColumnIndexOrThrow(DBScheme.SportTodo.COLUMN_NAME_CREATION_DATE));
@@ -301,18 +286,18 @@ public class TodoManager {
             int stepsdone = cursor.getInt(cursor.getColumnIndexOrThrow(DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE));
             int timeused = cursor.getInt(cursor.getColumnIndexOrThrow(DBScheme.SportTodo.COLUMN_NAME_TIME_USED));
 
-            itemIds.add(String.valueOf(id) + " | " + title + " | " + creationDate + " | " + state + " | " + String.valueOf(priority)+ " | " + String.valueOf(stepgoal)+ " | " + String.valueOf(stepsdone)+ " | " + String.valueOf(timeused));
+            itemIds.add(String.valueOf(id) + " | " + title + " | " + creationDate + " | " + state + " | " + String.valueOf(priority) + " | " + String.valueOf(stepgoal) + " | " + String.valueOf(stepsdone) + " | " + String.valueOf(timeused));
         }
         cursor.close();
 
         //txtOutput.setText("Length: " + itemIds.size());
 
-        for(int i = 0; i < itemIds.size(); i++) {
+        for (int i = 0; i < itemIds.size(); i++) {
             //txtOutput.setText(String.valueOf(itemIds.get(i)));
         }
     }
 
-    public void updateDateTodo(){
+    public void updateDateTodo() {
         SQLiteDatabase db = oDbHelper.getWritableDatabase();
 
         // New value for one column
@@ -324,7 +309,7 @@ public class TodoManager {
 
         // Which row to update, based on the title
         String selection = DBScheme.DateTodo.COLUMN_NAME_CREATION_DATE + " LIKE ?";
-        String[] selectionArgs = { "Date" };
+        String[] selectionArgs = {"Date"};
 
         int count = db.update(
                 DBScheme.DateTodo.TABLE_NAME,
@@ -335,13 +320,13 @@ public class TodoManager {
 
     }
 
-    public void deleteDB(){
+    public void deleteDB() {
         SQLiteDatabase db = oDbHelper.getWritableDatabase();
 
         // Define 'where' part of query.
         String selection = DBScheme.DateTodo.COLUMN_NAME_TITLE + " LIKE ?";
         // Specify arguments in placeholder order.
-        String[] selectionArgs = { "Title Desc" };
+        String[] selectionArgs = {"Title Desc"};
 
         // Issue SQL statement.
         db.delete(DBScheme.DateTodo.TABLE_NAME, selection, selectionArgs);
