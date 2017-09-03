@@ -44,6 +44,15 @@
             android:hint="Todo description"
             android:inputType="textPersonName" />
 
+        <Button
+            android:id="@+id/setReminderButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/switch6"
+            android:layout_below="@+id/switch6"
+            android:layout_marginTop="16dp"
+            android:text="Set reminder" />
+
     </RelativeLayout>
 
 </FrameLayout>
