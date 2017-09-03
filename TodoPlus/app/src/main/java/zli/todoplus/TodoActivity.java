@@ -3,33 +3,25 @@ package zli.todoplus;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.text.ParseException;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.Locale;
 import java.util.Map;
 
 import zli.todoplus.objects.DateTodo;
 import zli.todoplus.objects.SportTodo;
-import zli.todoplus.objects.Todo;
 import zli.todoplus.objects.TodoManager;
 
 public class TodoActivity extends AppCompatActivity {
-    Map<Integer,String> myMap = new LinkedHashMap<>();
+    Map<Integer, String> myMap = new LinkedHashMap<>();
     TodoListAdapter adapter = new TodoListAdapter(myMap, this);
 
     ListView list;
@@ -55,11 +47,18 @@ public class TodoActivity extends AppCompatActivity {
         loadTodo();
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_todo, menu);
         return true;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadTodo();
     }
 
     @Override
@@ -77,7 +76,7 @@ public class TodoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void loadTodo(){
+    public void loadTodo() {
         TodoManager manager = new TodoManager();
         //TextView textView = (TextView) findViewById(R.id.textView);
 
@@ -90,7 +89,7 @@ public class TodoActivity extends AppCompatActivity {
         list.setAdapter(adapter);
 
         //Load Data
-        Map<Integer,String> dataMap = manager.returnData();
+        Map<Integer, String> dataMap = manager.returnData();
 
         Iterator it = dataMap.entrySet().iterator();
         while (it.hasNext()) {

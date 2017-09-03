@@ -1,9 +1,22 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/SportTodoFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="zli.todoplus.SportTodoFragment">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/createSportTodoFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:clickable="true"
+        android:visibility="visible"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/ic_action_name"
+        tools:src="@drawable/ic_action_name" />
 
     <RelativeLayout
         android:layout_width="match_parent"

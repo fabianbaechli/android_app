@@ -2,6 +2,7 @@ package zli.todoplus;
 
 import android.app.DatePickerDialog;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
@@ -84,7 +85,8 @@ public class NormalTodoFragment extends Fragment implements View.OnClickListener
                     TodoManager manager = new TodoManager();
                     manager.addTodo(new DateTodo(todoDescription.getText().toString(), "pending",
                             isPriorityEntry, myCalendar.getTime()), getActivity());
-
+                    Intent changeActivity = new Intent(getActivity(), TodoActivity.class);
+                    startActivity(changeActivity);
                 }
         }
     }
