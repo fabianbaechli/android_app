@@ -15,7 +15,18 @@ public class CreateTodoActivity extends AppCompatActivity {
     ArrayList<android.app.Fragment> fragments = new ArrayList<>();
     FragmentManager fragmentManager = getFragmentManager();
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_create_todo);
+
+        removeActiveCenterFragments();
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(navigationListener);
+        displayFragment(new NormalTodoFragment());
+    }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navigationListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -32,16 +43,6 @@ public class CreateTodoActivity extends AppCompatActivity {
             return false;
         }
     };
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_todo);
-
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        displayFragment(new NormalTodoFragment());
-    }
 
     private void removeActiveCenterFragments() {
         if (fragments.size() > 0) {

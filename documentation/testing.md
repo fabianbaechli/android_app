@@ -1,5 +1,7 @@
 # Testing
-Dieses Dokument beschreibt unser Vorgehen beim Test unserer Android App "Todo+", die im Rahmen eines ÜKs im ZLI entwickelt wird.
+Dieses Dokument beschreibt unser Vorgehen beim Test unserer Android App "Todo+",
+die im Rahmen eines ÜKs im ZLI entwickelt wird.
+
 ## Whitebox Testing
 | Create Todo Test Cases                               | State |
 |------------------------------------------------------|:-----:|
@@ -39,8 +41,10 @@ Dieses Dokument beschreibt unser Vorgehen beim Test unserer Android App "Todo+",
 | Beim Klicken der Checkbox wird das Sport-Todo in die "Closed Todos"-Ansicht verschoben      | :x: |
 
 ## Blackbox Testing
-Nachdem wir die Whitebox-Tests abgeschlossen und alle Fehler die wir finden konnten ausgemerzt haben, lassen wir unsere App "Todo+" von einem anderen Team testen. 
+Nachdem wir die Whitebox-Tests abgeschlossen und alle Fehler die wir finden konnten ausgemerzt haben,
+lassen wir unsere App "Todo+" von einem anderen Team testen.
 
-Dieses wird versuchen, eventuell noch vorhandene Fehler und Bugs aufzudecken. Auf diesem Wege können wir uns auch ein Feedback zur Bedienung einholen und so die Usability unserer Applikation verbessern.
+Dieses wird versuchen, eventuell noch vorhandene Fehler und Bugs aufzudecken. Auf diesem Wege können
+wir uns auch ein Feedback zur Bedienung einholen und so die Usability unserer Applikation verbessern.
 
 Wir testen im Umkehrschluss die App des andereren Teams und geben ihnen entsprechend Feedback.

@@ -13,21 +13,21 @@
         tools:layout_editor_absoluteY="8dp">
 
         <Switch
-            android:id="@+id/switch5"
+            android:id="@+id/remindMeOnADayToggle"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/todoDescription"
             android:layout_below="@+id/todoDescription"
             android:layout_gravity="center"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="38dp"
             android:text="Remind me on a day" />
 
         <Switch
             android:id="@+id/switch6"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/switch5"
-            android:layout_below="@+id/switch5"
+            android:layout_alignStart="@+id/remindMeOnADayToggle"
+            android:layout_below="@+id/remindMeOnADayToggle"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
             android:text="Priority" />
@@ -43,6 +43,7 @@
             android:ems="10"
             android:hint="Todo description"
             android:inputType="textPersonName" />
+
     </RelativeLayout>
 
 </FrameLayout>
