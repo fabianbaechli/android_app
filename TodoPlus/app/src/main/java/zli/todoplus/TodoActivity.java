@@ -9,15 +9,31 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.text.ParseException;
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Locale;
+import java.util.Map;
 
 import zli.todoplus.objects.DateTodo;
+import zli.todoplus.objects.SportTodo;
 import zli.todoplus.objects.Todo;
 import zli.todoplus.objects.TodoManager;
 
 public class TodoActivity extends AppCompatActivity {
+    Map<Integer,String> myMap = new LinkedHashMap<>();
+    TodoListAdapter adapter = new TodoListAdapter(myMap, this);
+
+    ListView list;
+    Button btnAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +54,7 @@ public class TodoActivity extends AppCompatActivity {
         });
 
 
-        testTodo();
-
+        loadTodo();
     }
 
     @Override
@@ -64,10 +79,33 @@ public class TodoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void testTodo(){
+    public void loadTodo(){
         TodoManager manager = new TodoManager();
-        manager.addTodo(new DateTodo("Title", "Pending", true, new Date()), getApplicationContext());
-        TextView txtView = (TextView) findViewById(R.id.txtOutput);
-        txtView.setText("Done");
+        //TextView textView = (TextView) findViewById(R.id.textView);
+
+        //Put Into Database
+        manager.addTodo(new DateTodo("App Programmieren", "pending", true, new Date()), getApplicationContext());
+        manager.addTodo(new SportTodo("Laufen", "pending", true, 150), getApplicationContext());
+
+        //Setup List
+        list = (ListView) findViewById(R.id.list);
+        list.setAdapter(adapter);
+
+
+        //Load Data
+        Map<Integer,String> dataMap = manager.returnData();
+
+        Iterator it = dataMap.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry) it.next();
+
+            //Add Value to List
+            myMap.put(Integer.parseInt(pair.getKey().toString()), pair.getValue().toString());
+
+            it.remove(); // avoids a ConcurrentModificationException
+        }
+
+        adapter.notifyDataSetChanged();
+
     }
 }

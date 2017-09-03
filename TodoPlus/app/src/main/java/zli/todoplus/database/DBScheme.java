@@ -12,17 +12,11 @@ public final class DBScheme {
     private DBScheme() {}
 
     /* Inner class that defines the table contents */
-    /*public static class FeedEntry implements BaseColumns {
-        public static final String TABLE_NAME = "entry";
-        public static final String COLUMN_NAME_TITLE = "title";
-        public static final String COLUMN_NAME_SUBTITLE = "subtitle";
-    }*/
-
-    /* Inner class that defines the table contents */
     public static class DateTodo implements BaseColumns {
         public static final String TABLE_NAME = "DateTodo";
         public static final String COLUMN_NAME_TITLE = "title";
         public static final String COLUMN_NAME_CREATION_DATE = "creationdate";
+        public static final String COLUMN_NAME_REMINDER_DATE = "reminderdate";
         public static final String COLUMN_NAME_STATE = "state";
         public static final String COLUMN_NAME_PRIORITY = "priority";
     }

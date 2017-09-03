@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class TodoDBOpenHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 4;
     public static final String DATABASE_NAME = "TodoPlus.db";
 
     public TodoDBOpenHelper(Context context) {
@@ -48,6 +48,7 @@ public class TodoDBOpenHelper extends SQLiteOpenHelper {
                     DBScheme.DateTodo._ID + " INTEGER PRIMARY KEY," +
                     DBScheme.DateTodo.COLUMN_NAME_TITLE + " TEXT," +
                     DBScheme.DateTodo.COLUMN_NAME_CREATION_DATE + " TEXT," +
+                    DBScheme.DateTodo.COLUMN_NAME_REMINDER_DATE + " TEXT," +
                     DBScheme.DateTodo.COLUMN_NAME_STATE + " TEXT," +
                     DBScheme.DateTodo.COLUMN_NAME_PRIORITY + " INTEGER)";
 
