@@ -23,7 +23,7 @@
             android:text="Remind me on a day" />
 
         <Switch
-            android:id="@+id/switch6"
+            android:id="@+id/priorityTodoToggle"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/remindMeOnADayToggle"
@@ -48,10 +48,26 @@
             android:id="@+id/setReminderButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/switch6"
-            android:layout_below="@+id/switch6"
+            android:layout_alignStart="@+id/priorityTodoToggle"
+            android:layout_below="@+id/priorityTodoToggle"
             android:layout_marginTop="16dp"
             android:text="Set reminder" />
+
+        <EditText
+            android:id="@+id/reminderInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/setReminderButton"
+            android:layout_below="@+id/setReminderButton"
+            android:layout_marginTop="27dp"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:ems="10"
+            android:hint="Reminder Date"
+            android:inputType="textPersonName"
+            android:visibility="invisible" />
 
     </RelativeLayout>
 
