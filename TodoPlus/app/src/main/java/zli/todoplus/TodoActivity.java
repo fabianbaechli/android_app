@@ -52,8 +52,6 @@ public class TodoActivity extends AppCompatActivity {
                 startActivity(changeActivity);
             }
         });
-
-
         loadTodo();
     }
 
@@ -90,7 +88,6 @@ public class TodoActivity extends AppCompatActivity {
         //Setup List
         list = (ListView) findViewById(R.id.list);
         list.setAdapter(adapter);
-
 
         //Load Data
         Map<Integer,String> dataMap = manager.returnData();

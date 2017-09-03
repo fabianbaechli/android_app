@@ -24,7 +24,7 @@ public class NormalTodoFragment extends Fragment implements View.OnClickListener
     private Switch reminderToggle;
     private Button setReminderButton;
     private EditText reminderInfo;
-    private
+
     Calendar myCalendar = Calendar.getInstance();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
