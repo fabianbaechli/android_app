@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="zli.todoplus.AddTodoActivity">
+
+    <RelativeLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <EditText
+            android:id="@+id/todoDescription"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="27dp"
+            android:ems="10"
+            android:hint="Todo description"
+            android:inputType="textPersonName" />
+
+        <Switch
+            android:id="@+id/priorityTodoToggle"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/remindmeToggle"
+            android:layout_below="@+id/remindmeToggle"
+            android:layout_gravity="center"
+            android:layout_marginTop="14dp"
+            android:text="Priority" />
+
+        <Switch
+            android:id="@+id/remindmeToggle"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/sportTodoToggle"
+            android:layout_below="@+id/sportTodoToggle"
+            android:layout_gravity="center"
+            android:layout_marginTop="13dp"
+            android:text="Remind me on a day" />
+
+        <Switch
+            android:id="@+id/sportTodoToggle"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Sport Todo"
+            android:layout_marginTop="22dp"
+            android:layout_below="@+id/todoDescription"
+            android:layout_alignStart="@+id/todoDescription" />
+
+        <EditText
+            android:id="@+id/editText5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Number of steps"
+            android:inputType="numberSigned"
+            android:layout_centerVertical="true"
+            android:layout_alignStart="@+id/priorityTodoToggle"
+            android:layout_alignEnd="@+id/priorityTodoToggle" />
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

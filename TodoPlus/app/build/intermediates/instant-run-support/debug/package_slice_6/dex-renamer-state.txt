@@ -1,0 +1,4 @@
+#Tue Sep 05 20:42:15 CEST 2017
+base.0=/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_6
+renamed.0=classes.dex
+file.0=/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_6/classes.dex

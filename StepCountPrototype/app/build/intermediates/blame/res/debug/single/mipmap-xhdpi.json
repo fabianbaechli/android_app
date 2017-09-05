@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/yvokeller/Documents/GitHub/android_app/StepCountPrototype/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher_round.png",
+        "source": "/Users/yvokeller/Documents/GitHub/android_app/StepCountPrototype/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/yvokeller/Documents/GitHub/android_app/StepCountPrototype/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher.png",
+        "source": "/Users/yvokeller/Documents/GitHub/android_app/StepCountPrototype/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    }
+]

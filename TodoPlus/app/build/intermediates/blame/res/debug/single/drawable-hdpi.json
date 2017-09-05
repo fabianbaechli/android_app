@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_sport_todo.png",
+        "source": "/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/src/main/res/drawable-hdpi/ic_sport_todo.png"
+    },
+    {
+        "merged": "/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_add_white.png",
+        "source": "/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/src/main/res/drawable-hdpi/ic_add_white.png"
+    },
+    {
+        "merged": "/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_action_name.png",
+        "source": "/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/src/main/res/drawable-hdpi/ic_action_name.png"
+    },
+    {
+        "merged": "/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_add_new.png",
+        "source": "/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/src/main/res/drawable-hdpi/ic_add_new.png"
+    },
+    {
+        "merged": "/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/build/intermediates/res/merged/debug/drawable-hdpi/gradient_1.png",
+        "source": "/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/src/main/res/drawable-hdpi/gradient_1.png"
+    },
+    {
+        "merged": "/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_todo_icon.png",
+        "source": "/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/src/main/res/drawable-hdpi/ic_todo_icon.png"
+    }
+]
