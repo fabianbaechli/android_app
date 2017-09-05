@@ -1,0 +1,7 @@
+#Tue Sep 05 20:42:15 CEST 2017
+base.0=/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_e3b075af3ad6efe35a6823f3d1f46f36355f60ad
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_00bfd7e7e6ddded7dd1fe9067cc976e58eb6e697/classes.dex
+base.1=/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_00bfd7e7e6ddded7dd1fe9067cc976e58eb6e697
+file.0=/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_e3b075af3ad6efe35a6823f3d1f46f36355f60ad/classes.dex

@@ -1,0 +1,89 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/SportTodoFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="zli.todoplus.SportTodoFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/createTodoFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:clickable="true"
+        android:visibility="visible"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/ic_action_name"
+        tools:src="@drawable/ic_action_name" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <Switch
+            android:id="@+id/remindMeOnADayToggle"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/todoDescription"
+            android:layout_below="@+id/todoDescription"
+            android:layout_gravity="center"
+            android:layout_marginTop="38dp"
+            android:text="Remind me on a day" />
+
+        <Switch
+            android:id="@+id/priorityTodoToggle"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/remindMeOnADayToggle"
+            android:layout_below="@+id/remindMeOnADayToggle"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:text="Priority" />
+
+        <EditText
+            android:id="@+id/todoDescription"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/imageView2"
+            android:layout_gravity="center"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="18dp"
+            android:ems="10"
+            android:hint="Todo description"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/setReminderButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/priorityTodoToggle"
+            android:layout_below="@+id/priorityTodoToggle"
+            android:layout_marginTop="18dp"
+            android:text="Set reminder" />
+
+        <EditText
+            android:id="@+id/reminderInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/setReminderButton"
+            android:layout_below="@+id/setReminderButton"
+            android:layout_marginTop="25dp"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="Reminder Date"
+            android:inputType="textPersonName"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+
+</FrameLayout>

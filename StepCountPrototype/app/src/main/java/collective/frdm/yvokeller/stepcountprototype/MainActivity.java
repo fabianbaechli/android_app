@@ -22,6 +22,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private boolean isSensorPresent = false;
     private TextView mStepsSinceReboot;
 
+    //
+    // Is used to count steps since reboot.
+    // Set to zero when phone restarts
+    //
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

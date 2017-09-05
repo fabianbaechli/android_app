@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_00bfd7e7e6ddded7dd1fe9067cc976e58eb6e697/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3cee72586f3807c9eaf60120e45d34d2caed3cd7">
+        <dex dex="/Users/yvokeller/Documents/GitHub/android_app/TodoPlus/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_e3b075af3ad6efe35a6823f3d1f46f36355f60ad/classes.dex" />
+    </item>
+
+</items>
