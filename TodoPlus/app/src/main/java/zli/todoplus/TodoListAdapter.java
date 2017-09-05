@@ -17,10 +17,10 @@ import java.util.Map;
  */
 
 public class TodoListAdapter extends BaseAdapter implements ListAdapter {
-    private Map<Integer,String> list = new LinkedHashMap<>();
+    private Map<Integer, String> list = new LinkedHashMap<>();
     private Context context;
 
-    public TodoListAdapter(Map<Integer,String> list, Context context) {
+    public TodoListAdapter(Map<Integer, String> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -54,28 +54,26 @@ public class TodoListAdapter extends BaseAdapter implements ListAdapter {
         TextView listItemText = view.findViewById(R.id.list_item_string);
         TextView listItemText2 = view.findViewById(R.id.list_item_string_2);
 
-
         String value = list.get(position);
         String[] parts = value.split(";");
-        String part1 = parts[0];
-        String part2 = parts[1];
+        final String part1 = parts[0];
+        final String part2 = parts[1];
 
         listItemText.setText(part1);
         listItemText2.setText(part2);
 
-
         //Handle buttons and add onClickListeners
         Button editBtn = (Button) view.findViewById(R.id.btnEdit);
 
-        editBtn.setOnClickListener(new View.OnClickListener(){
+        editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //do something
+                System.out.println(part1);
+                System.out.println(part2);
                 notifyDataSetChanged();
             }
         });
-
-
         return view;
     }
 }
