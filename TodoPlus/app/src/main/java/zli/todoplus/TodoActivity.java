@@ -13,8 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -59,7 +59,6 @@ public class TodoActivity extends AppCompatActivity implements SensorEventListen
 
             mSensorManager.registerListener(this, mStepDetectorSensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
-        //----
     }
 
 
@@ -117,9 +116,9 @@ public class TodoActivity extends AppCompatActivity implements SensorEventListen
             System.out.println("new step registered!");
             manager.newStepDone();
 
-            countStep = false;
-        } else {
             countStep = true;
+        } else {
+            countStep = false;
         }
     }
 
