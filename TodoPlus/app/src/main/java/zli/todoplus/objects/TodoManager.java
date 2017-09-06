@@ -27,7 +27,7 @@ public class TodoManager {
 
     Map<Integer, String> list = new LinkedHashMap<>();
 
-    TodoDBOpenHelper oDbHelper;
+    public static TodoDBOpenHelper oDbHelper;
 
     //Function To Add new todo. Is automatically added to database.
     public boolean addTodo(Todo todo, Context context) {

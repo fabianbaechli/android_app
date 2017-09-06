@@ -1,6 +1,7 @@
 package zli.todoplus;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +13,17 @@ import android.widget.TextView;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import zli.todoplus.objects.TodoManager;
+
 /**
  * Created by yvokeller on 31.08.17.
  */
 
 public class TodoListAdapter extends BaseAdapter implements ListAdapter {
     private Map<Integer, String> list = new LinkedHashMap<>();
-    private Context context;
+    private TodoActivity context;
 
-    public TodoListAdapter(Map<Integer, String> list, Context context) {
+    public TodoListAdapter(Map<Integer, String> list, TodoActivity context) {
         this.list = list;
         this.context = context;
     }
@@ -55,25 +58,38 @@ public class TodoListAdapter extends BaseAdapter implements ListAdapter {
         TextView listItemText2 = view.findViewById(R.id.list_item_string_2);
 
         String value = list.get(position);
-        String[] parts = value.split(";");
-        final String part1 = parts[0];
-        final String part2 = parts[1];
+        if (value != null) {
+            String[] parts = value.split(";");
+            final String todoDescription = parts[0];
+            final String todoInfos = parts[1];
 
-        listItemText.setText(part1);
-        listItemText2.setText(part2);
+            listItemText.setText(todoDescription);
+            listItemText2.setText(todoInfos);
 
-        //Handle buttons and add onClickListeners
-        Button editBtn = (Button) view.findViewById(R.id.btnEdit);
+            //Handle buttons and add onClickListeners
+            Button editBtn = (Button) view.findViewById(R.id.btnEdit);
 
-        editBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //do something
-                System.out.println(part1);
-                System.out.println(part2);
-                notifyDataSetChanged();
+            // really bad practice, but i don't have the time to determine if it's a
+            // sporttodo or a datetodo in a more elegant manner
+            if (todoInfos.contains("Used time:")) {
+                editBtn.setText("Start!");
+            } else {
+                editBtn.setText("Quit!");
             }
-        });
+            final int entry = position;
+            editBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (todoInfos.contains("Used time:")) {
+                        context.removeItemFromList(entry);
+                    } else {
+                        context.removeItemFromList(entry);
+                    }
+                    notifyDataSetChanged();
+                }
+            });
+            return view;
+        }
         return view;
     }
 }
