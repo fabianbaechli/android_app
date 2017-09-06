@@ -1,6 +1,11 @@
 package zli.todoplus;
 
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -16,12 +21,15 @@ import java.util.Map;
 
 import zli.todoplus.objects.TodoManager;
 
-public class TodoActivity extends AppCompatActivity {
+public class TodoActivity extends AppCompatActivity implements SensorEventListener{
     Map<Integer, String> myMap = new LinkedHashMap<>();
     TodoListAdapter adapter = new TodoListAdapter(myMap, this);
     TodoManager manager = new TodoManager(this);
     ListView list;
-    Button btnAdd;
+
+    //Sensors
+    private SensorManager mSensorManager;
+    private Sensor mStepDetectorSensor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +41,9 @@ public class TodoActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Your Todos");
         final Intent changeActivity = new Intent(this, CreateTodoActivity.class);
 
-        System.out.println("registering service");
-        Intent mStepsIntent = new Intent(getApplicationContext(), StepCountService.class);
-        startService(mStepsIntent);
+        //System.out.println("registering service");
+        //Intent mStepsIntent = new Intent(getApplicationContext(), StepCountService.class);
+        //startService(mStepsIntent);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +53,15 @@ public class TodoActivity extends AppCompatActivity {
             }
         });
         loadTodo();
+
+        //Sensor Stuff
+        mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
+        if (mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR) != null) {
+            mStepDetectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
+
+            mSensorManager.registerListener(this, mStepDetectorSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        }
+        //----
     }
 
 
@@ -94,5 +111,16 @@ public class TodoActivity extends AppCompatActivity {
             it.remove(); // avoids a ConcurrentModificationException
         }
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        System.out.println("new step registered!");
+        manager.newStepDone();
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
     }
 }
