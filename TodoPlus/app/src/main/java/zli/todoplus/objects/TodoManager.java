@@ -89,9 +89,12 @@ public class TodoManager {
             String state = cursor.getString(cursor.getColumnIndexOrThrow(DBScheme.DateTodo.COLUMN_NAME_STATE));
             int priority = cursor.getInt(cursor.getColumnIndexOrThrow(DBScheme.DateTodo.COLUMN_NAME_PRIORITY));
 
-            content = content + title + ";" + reminderDate + " | " + state + " | " + String.valueOf(priority);
+            //Format reminder date
+            String parts[] = reminderDate.split(" ");
+            String newReminderDate = parts[0];
+
             final String databaseId = Long.toString(id);
-            list.put(count, title + ";" + "dateTodo;" + databaseId + ";" + reminderDate + " | " + state + " | " + String.valueOf(priority));
+            list.put(count, title + ";" + "dateTodo;" + databaseId + ";" + newReminderDate + " | " + state + " | " + String.valueOf(priority));
             count++;
         }
         cursor.close();

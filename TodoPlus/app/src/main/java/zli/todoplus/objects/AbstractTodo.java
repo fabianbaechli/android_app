@@ -18,7 +18,9 @@ public abstract class AbstractTodo implements Todo{
 
     public AbstractTodo(String title, String state, Boolean priority){
         this.id = 1;
-        this.creationDate = new Date();
+
+        Calendar myCalendar = Calendar.getInstance();
+        this.creationDate = myCalendar.getTime();
 
         this.title = title;
         this.state = state;
