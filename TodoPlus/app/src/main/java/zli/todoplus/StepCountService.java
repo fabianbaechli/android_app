@@ -63,8 +63,9 @@ public class StepCountService extends Service implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        System.out.println("sensor changed");
+        //System.out.println("sensor changed");
         System.out.println("step registered!");
+
         manager.newStepDone();
     }
 

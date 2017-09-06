@@ -41,10 +41,6 @@ public class TodoActivity extends AppCompatActivity implements SensorEventListen
         getSupportActionBar().setTitle("Your Todos");
         final Intent changeActivity = new Intent(this, CreateTodoActivity.class);
 
-        //System.out.println("registering service");
-        //Intent mStepsIntent = new Intent(getApplicationContext(), StepCountService.class);
-        //startService(mStepsIntent);
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +113,8 @@ public class TodoActivity extends AppCompatActivity implements SensorEventListen
     public void onSensorChanged(SensorEvent sensorEvent) {
         System.out.println("new step registered!");
         manager.newStepDone();
+
+        System.out.println(sensorEvent.values[0]);
     }
 
     @Override
