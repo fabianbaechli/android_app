@@ -22,9 +22,9 @@ import zli.todoplus.objects.TodoManager;
 
 public class TodoListAdapter extends BaseAdapter implements ListAdapter {
     private Map<Integer, String> list = new LinkedHashMap<>();
-    private Context context;
+    private TodoActivity context;
 
-    public TodoListAdapter(Map<Integer, String> list, Context context) {
+    public TodoListAdapter(Map<Integer, String> list, TodoActivity context) {
         this.list = list;
         this.context = context;
     }
@@ -75,8 +75,9 @@ public class TodoListAdapter extends BaseAdapter implements ListAdapter {
             public void onClick(View v) {
                 //do something
                 if (type.equals("dateTodo")) {
+                    context.manager.deleteDateTodo(databaseId);
                 } else {
-
+                    context.manager.deleteSportTodo(databaseId);
                 }
                 notifyDataSetChanged();
             }

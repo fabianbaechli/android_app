@@ -82,9 +82,9 @@ public class NormalTodoFragment extends Fragment implements View.OnClickListener
                 if (!todoDescription.getText().toString().equals("")) {
                     System.out.println("created todo");
 
-                    TodoManager manager = new TodoManager();
+                    TodoManager manager = new TodoManager(getActivity());
                     manager.addTodo(new DateTodo(todoDescription.getText().toString(), "pending",
-                            isPriorityEntry, myCalendar.getTime()), getActivity());
+                            isPriorityEntry, myCalendar.getTime()));
                     Intent changeActivity = new Intent(getActivity(), TodoActivity.class);
                     startActivity(changeActivity);
                 }

@@ -26,16 +26,11 @@ public class TodoManager {
     List<Todo> todoList = new ArrayList<>();
 
     Map<Integer, String> list = new LinkedHashMap<>();
-
-    public static TodoDBOpenHelper oDbHelper;
+    TodoDBOpenHelper oDbHelper;
 
     //Function To Add new todo. Is automatically added to database.
-    public boolean addTodo(Todo todo, Context context) {
+    public boolean addTodo(Todo todo) {
         todoList.add(todo);
-
-        //Insert To DB
-        oDbHelper = new TodoDBOpenHelper(context);
-
         if (todo.getType().equals("date")) {
             //Date Todo
             DateTodo newTodo = (DateTodo) todo;
@@ -47,6 +42,9 @@ public class TodoManager {
         }
 
         return true;
+    }
+    public TodoManager(Context context) {
+        oDbHelper = new TodoDBOpenHelper(context);
     }
 
     public Map returnData() {
@@ -322,23 +320,23 @@ public class TodoManager {
 
     }
 
-    public void deleteDateTodo(Integer entryID) {
+    public void deleteDateTodo(String entryID) {
         SQLiteDatabase db = oDbHelper.getWritableDatabase();
 
         //Execute sql query to remove from database
         //NOTE: When removing by String in SQL, value must be enclosed with ''
-        db.execSQL("DELETE FROM " + DBScheme.DateTodo.TABLE_NAME + " WHERE " + DBScheme.DateTodo._ID + " = "  + entryID.toString());
+        db.execSQL("DELETE FROM " + DBScheme.DateTodo.TABLE_NAME + " WHERE " + DBScheme.DateTodo._ID + " = "  + entryID);
 
         //Close the database
         db.close();
     }
 
-    public void deleteSportTodo(Integer entryID) {
+    public void deleteSportTodo(String entryID) {
         SQLiteDatabase db = oDbHelper.getWritableDatabase();
 
         //Execute sql query to remove from database
         //NOTE: When removing by String in SQL, value must be enclosed with ''
-        db.execSQL("DELETE FROM " + DBScheme.SportTodo.TABLE_NAME + " WHERE " + DBScheme.SportTodo._ID + " = "  + entryID.toString());
+        db.execSQL("DELETE FROM " + DBScheme.SportTodo.TABLE_NAME + " WHERE " + DBScheme.SportTodo._ID + " = "  + entryID);
 
         //Close the database
         db.close();

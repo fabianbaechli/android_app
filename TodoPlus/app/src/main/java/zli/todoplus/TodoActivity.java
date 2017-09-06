@@ -23,7 +23,7 @@ import zli.todoplus.objects.TodoManager;
 public class TodoActivity extends AppCompatActivity {
     Map<Integer, String> myMap = new LinkedHashMap<>();
     TodoListAdapter adapter = new TodoListAdapter(myMap, this);
-
+    TodoManager manager;
     ListView list;
     Button btnAdd;
 
@@ -77,13 +77,9 @@ public class TodoActivity extends AppCompatActivity {
     }
 
     public void loadTodo() {
-        TodoManager manager = new TodoManager();
+        manager = new TodoManager(this);
         //TextView textView = (TextView) findViewById(R.id.textView);
-
-        //Put Into Database
-        manager.addTodo(new DateTodo("App Programmieren", "pending", true, new Date()), getApplicationContext());
-        manager.addTodo(new SportTodo("Laufen", "pending", true, 150), getApplicationContext());
-
+        
         //Setup List
         list = (ListView) findViewById(R.id.list);
         list.setAdapter(adapter);
@@ -101,8 +97,5 @@ public class TodoActivity extends AppCompatActivity {
             it.remove(); // avoids a ConcurrentModificationException
         }
         adapter.notifyDataSetChanged();
-    }
-    public void removeItemFromList(int index) {
-        loadTodo();
     }
 }
