@@ -43,6 +43,7 @@ public class TodoManager {
 
         return true;
     }
+
     public TodoManager(Context context) {
         oDbHelper = new TodoDBOpenHelper(context);
     }
@@ -235,13 +236,9 @@ public class TodoManager {
             itemIds.add(String.valueOf(id) + " | " + title + " | " + creationDate + " | " + state + " | " + String.valueOf(priority));
         }
         cursor.close();
-
-        //txtOutput.setText("Length: " + itemIds.size());
-
         for (int i = 0; i < itemIds.size(); i++) {
             //txtOutput.setText(String.valueOf(itemIds.get(i)));
         }
-
     }
 
     public void readSportTodo() {
@@ -328,7 +325,7 @@ public class TodoManager {
 
         //Execute sql query to remove from database
         //NOTE: When removing by String in SQL, value must be enclosed with ''
-        db.execSQL("DELETE FROM " + DBScheme.DateTodo.TABLE_NAME + " WHERE " + DBScheme.DateTodo._ID + " = "  + entryID);
+        db.execSQL("DELETE FROM " + DBScheme.DateTodo.TABLE_NAME + " WHERE " + DBScheme.DateTodo._ID + " = " + entryID);
 
         //Close the database
         db.close();
@@ -339,7 +336,7 @@ public class TodoManager {
 
         //Execute sql query to remove from database
         //NOTE: When removing by String in SQL, value must be enclosed with ''
-        db.execSQL("DELETE FROM " + DBScheme.SportTodo.TABLE_NAME + " WHERE " + DBScheme.SportTodo._ID + " = "  + entryID);
+        db.execSQL("DELETE FROM " + DBScheme.SportTodo.TABLE_NAME + " WHERE " + DBScheme.SportTodo._ID + " = " + entryID);
 
         //Close the database
         db.close();

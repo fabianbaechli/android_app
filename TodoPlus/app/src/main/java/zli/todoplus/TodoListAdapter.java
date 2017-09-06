@@ -11,8 +11,6 @@ import android.widget.TextView;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import zli.todoplus.objects.TodoManager;
-
 public class TodoListAdapter extends BaseAdapter implements ListAdapter {
     private Map<Integer, String> list = new LinkedHashMap<>();
     private TodoActivity context;
