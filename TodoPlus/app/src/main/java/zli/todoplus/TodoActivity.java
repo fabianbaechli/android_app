@@ -37,6 +37,10 @@ public class TodoActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Your Todos");
         final Intent changeActivity = new Intent(this, CreateTodoActivity.class);
 
+        System.out.println("registering service");
+        Intent mStepsIntent = new Intent(getApplicationContext(), StepCountService.class);
+        startService(mStepsIntent);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +84,8 @@ public class TodoActivity extends AppCompatActivity {
         //Setup List
         list = (ListView) findViewById(R.id.list);
         list.setAdapter(adapter);
+
+        manager.newStepDone();
 
         //Load Data
         Map dataMap = manager.returnData();

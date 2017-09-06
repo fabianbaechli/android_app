@@ -43,6 +43,7 @@ public class TodoManager {
 
         return true;
     }
+
     public TodoManager(Context context) {
         oDbHelper = new TodoDBOpenHelper(context);
     }
@@ -328,7 +329,7 @@ public class TodoManager {
 
         //Execute sql query to remove from database
         //NOTE: When removing by String in SQL, value must be enclosed with ''
-        db.execSQL("DELETE FROM " + DBScheme.DateTodo.TABLE_NAME + " WHERE " + DBScheme.DateTodo._ID + " = "  + entryID);
+        db.execSQL("DELETE FROM " + DBScheme.DateTodo.TABLE_NAME + " WHERE " + DBScheme.DateTodo._ID + " = " + entryID);
 
         //Close the database
         db.close();
@@ -339,11 +340,56 @@ public class TodoManager {
 
         //Execute sql query to remove from database
         //NOTE: When removing by String in SQL, value must be enclosed with ''
-        db.execSQL("DELETE FROM " + DBScheme.SportTodo.TABLE_NAME + " WHERE " + DBScheme.SportTodo._ID + " = "  + entryID);
+        db.execSQL("DELETE FROM " + DBScheme.SportTodo.TABLE_NAME + " WHERE " + DBScheme.SportTodo._ID + " = " + entryID);
 
         //Close the database
         db.close();
     }
+
+    public boolean newStepDone() {
+        boolean createSuccessful = false;
+        int currentStepCounts = 0;
+
+        String selectQuery = "SELECT " + DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE + " FROM " + DBScheme.SportTodo.TABLE_NAME + " WHERE " + DBScheme.SportTodo.COLUMN_NAME_TITLE + " = 'Test321'";
+
+        try {
+            SQLiteDatabase db = oDbHelper.getWritableDatabase();
+            Cursor c = db.rawQuery(selectQuery, null);
+
+            if (c.moveToFirst()) {
+                do {
+                    //var = amount of steps done at the moment
+                    currentStepCounts = c.getInt((c.getColumnIndex(DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE)));
+                } while (c.moveToNext());
+            }
+
+            db.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            SQLiteDatabase db = oDbHelper.getWritableDatabase();
+            ContentValues values = new ContentValues();
+
+            //Sensor changed --> Add 1
+            values.put(DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE, ++currentStepCounts);
+
+            int row = db.update(DBScheme.SportTodo.TABLE_NAME,
+                    values,
+                    DBScheme.SportTodo.COLUMN_NAME_TITLE + " = 'Test321'",
+                    null);
+
+            if (row == 1) {
+                createSuccessful = true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return createSuccessful;
+    }
+
 
     public void deleteDB() {
         SQLiteDatabase db = oDbHelper.getWritableDatabase();
