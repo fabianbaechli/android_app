@@ -14,24 +14,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
-import java.util.Arrays;
+
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import zli.todoplus.objects.TodoManager;
 
-public class TodoActivity extends AppCompatActivity implements SensorEventListener{
-    Map<Integer, String> myMap = new LinkedHashMap<>();
-    TodoListAdapter adapter = new TodoListAdapter(myMap, this);
+public class TodoActivity extends AppCompatActivity implements SensorEventListener {
+    private Map<Integer, String> myMap = new LinkedHashMap<>();
+    private TodoListAdapter adapter = new TodoListAdapter(myMap, this);
     TodoManager manager = new TodoManager(this);
-    ListView list;
-
-    //Sensors
+    private ListView list;
     private SensorManager mSensorManager;
     private Sensor mStepDetectorSensor;
-
-    boolean countStep = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +49,14 @@ public class TodoActivity extends AppCompatActivity implements SensorEventListen
         loadTodo();
 
         //Sensor Stuff
-        mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
-        if (mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR) != null) {
-            mStepDetectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
-
-            mSensorManager.registerListener(this, mStepDetectorSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        if (mSensorManager == null) {
+            mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
+            if (mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR) != null) {
+                mStepDetectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
+                mSensorManager.registerListener(this, mStepDetectorSensor, SensorManager.SENSOR_DELAY_NORMAL);
+            } else {
+                System.out.println("Sensor not aviable");
+            }
         }
     }
 
@@ -112,18 +111,13 @@ public class TodoActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        if(countStep = true){
-            System.out.println("new step registered!");
-            manager.newStepDone();
-
-            countStep = true;
-        } else {
-            countStep = false;
-        }
+        System.out.println("new step registered!");
+        manager.newStepDone();
+        loadTodo();
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
-
+        System.out.println("accuracy: " + i);
     }
 }
