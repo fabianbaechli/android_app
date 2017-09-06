@@ -1,7 +1,10 @@
 package zli.todoplus.objects;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -9,6 +12,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -17,6 +21,7 @@ import java.util.Map;
 import zli.todoplus.TodoActivity;
 import zli.todoplus.database.DBScheme;
 import zli.todoplus.database.TodoDBOpenHelper;
+import zli.todoplus.notification.MyReceiver;
 
 /**
  * Created by yvokeller on 02.09.17.
@@ -64,7 +69,7 @@ public class TodoManager {
         };
 
         // How you want the results sorted in the resulting Cursor
-        String sortOrder = DBScheme.DateTodo._ID + " ASC";
+        String sortOrder = DBScheme.DateTodo.COLUMN_NAME_REMINDER_DATE + " ASC";
 
         Cursor cursor = db.query(
                 DBScheme.DateTodo.TABLE_NAME,             // The table to query
@@ -93,7 +98,14 @@ public class TodoManager {
             String newReminderDate = parts[0];
 
             final String databaseId = Long.toString(id);
-            list.put(count, title + ";" + "dateTodo;" + databaseId + ";" + newReminderDate + " | " + state + " | " + String.valueOf(priority));
+
+            if(priority == 1){
+                list.put(count, title + ";" + "dateTodo;" + databaseId + ";" + newReminderDate + " | PRIORITY");
+            } else {
+                list.put(count, title + ";" + "dateTodo;" + databaseId + ";" + newReminderDate + "");
+            }
+
+            //list.put(count, title + ";" + "dateTodo;" + databaseId + ";" + newReminderDate + " | " + state + " | " + String.valueOf(priority));
             count++;
         }
         cursor.close();
@@ -141,8 +153,21 @@ public class TodoManager {
             int timeused = cursor.getInt(cursor.getColumnIndexOrThrow(DBScheme.SportTodo.COLUMN_NAME_TIME_USED));
 
             final String databaseId = Long.toString(id);
-            list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + stepsdone + " / " +
-                    stepgoal + " steps done. | Used time: " + String.valueOf(timeused));
+
+            if(state.equals("active")){
+                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + stepsdone + " / " +
+                        stepgoal + " steps done. | ACTIVE");
+            } else if(state.equals("inactive")){
+                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + stepsdone + " / " +
+                        stepgoal + " steps done. | INACTIVE");
+            } else if(state.equals("done")){
+                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + stepsdone + " / " +
+                        stepgoal + " steps done. | GOAL REACHED");
+            } else {
+                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + stepsdone + " / " +
+                        stepgoal + " steps done. | UNKNOWN STATE");
+            }
+
             count++;
         }
         cursor.close();
@@ -377,9 +402,12 @@ public class TodoManager {
     public boolean newStepDone() {
         boolean createSuccessful = false;
         int currentStepCounts = 0;
-        int id;
+        int todoID, stepGoal;
 
-        String selectQuery = "SELECT " + DBScheme.SportTodo._ID +", " + DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE + " FROM " +
+        String selectQuery = "SELECT " + DBScheme.SportTodo._ID +", " +
+                DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE +", " +
+                DBScheme.SportTodo.COLUMN_NAME_STEP_GOAL +
+                " FROM " +
                 DBScheme.SportTodo.TABLE_NAME + " WHERE " + DBScheme.SportTodo.COLUMN_NAME_STATE + " = 'active'";
 
         try {
@@ -390,27 +418,44 @@ public class TodoManager {
                 System.out.println("entered loop");
 
                 //currentStepCounts = amount of steps done at the moment
-                id = c.getInt((c.getColumnIndex(DBScheme.SportTodo._ID)));
+                todoID = c.getInt((c.getColumnIndex(DBScheme.SportTodo._ID)));
                 currentStepCounts = c.getInt((c.getColumnIndex(DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE)));
+                stepGoal = c.getInt((c.getColumnIndex(DBScheme.SportTodo.COLUMN_NAME_STEP_GOAL)));
 
-                System.out.println("got values: " + id + " / " + currentStepCounts);
+                System.out.println("got values: " + todoID + " / " + currentStepCounts+ " / " + stepGoal);
 
-                //Increase Value + 1
                 try {
                     SQLiteDatabase db2 = oDbHelper.getWritableDatabase();
                     ContentValues values = new ContentValues();
 
-                    //Sensor changed --> Add 1
-                    values.put(DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE, ++currentStepCounts);
+                    if(!(currentStepCounts >= stepGoal)){
+                        //Sensor changed --> Increase StepsDone + 1
+                        values.put(DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE, ++currentStepCounts);
 
-                    int row = db.update(DBScheme.SportTodo.TABLE_NAME,
-                            values,
-                            DBScheme.SportTodo._ID + " = " + id,
-                            null);
+                        int row = db.update(DBScheme.SportTodo.TABLE_NAME,
+                                values,
+                                DBScheme.SportTodo._ID + " = " + todoID,
+                                null);
 
-                    if (row == 1) {
-                        createSuccessful = true;
+                        if (row == 1) {
+                            createSuccessful = true;
+                        }
+                    } else {
+                        //Goal reached
+                        Calendar myCalendar = Calendar.getInstance();
+                        System.out.println("step goal reached");
+
+                        setSportTodoDone(String.valueOf(todoID));
+
+                        /*Intent notifyIntent = new Intent(getActivity(), MyReceiver.class);
+
+                        PendingIntent pendingIntent = PendingIntent.getBroadcast
+                                (getActivity(), 2, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                        AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+                        alarmManager.set(AlarmManager.RTC_WAKEUP, myCalendar.getTimeInMillis(), pendingIntent);*/
                     }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -455,6 +500,29 @@ public class TodoManager {
 
             //Sensor changed --> Add 1
             values.put(DBScheme.SportTodo.COLUMN_NAME_STATE, "inactive");
+
+            int row = db.update(DBScheme.SportTodo.TABLE_NAME,
+                    values,
+                    DBScheme.SportTodo._ID + " = " + todoID,
+                    null);
+
+            if (row == 1) {
+                successful = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return successful;
+    }
+
+    public boolean setSportTodoDone(String todoID) {
+        boolean successful = false;
+        try {
+            SQLiteDatabase db = oDbHelper.getWritableDatabase();
+            ContentValues values = new ContentValues();
+
+            //Sensor changed --> Add 1
+            values.put(DBScheme.SportTodo.COLUMN_NAME_STATE, "done");
 
             int row = db.update(DBScheme.SportTodo.TABLE_NAME,
                     values,

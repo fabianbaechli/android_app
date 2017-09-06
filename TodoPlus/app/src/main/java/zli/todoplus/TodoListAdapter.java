@@ -1,6 +1,7 @@
 package zli.todoplus;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,15 +56,18 @@ class TodoListAdapter extends BaseAdapter implements ListAdapter {
         final String type = parts[1];
         final String databaseId = parts[2];
         final String description = parts[3];
+        //final String priority = parts[4];
         listItemText.setText(title);
         listItemText2.setText(description);
 
         //Handle buttons and add onClickListeners
         Button editBtn = view.findViewById(R.id.btnEdit);
 
+
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 //do something
                 if (type.equals("dateTodo")) {
                     System.out.println("deleting date todo");
