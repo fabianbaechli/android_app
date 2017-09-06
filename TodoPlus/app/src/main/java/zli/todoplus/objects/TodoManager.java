@@ -27,7 +27,7 @@ public class TodoManager {
 
     Map<Integer, String> list = new LinkedHashMap<>();
 
-    TodoDBOpenHelper oDbHelper;
+    public static TodoDBOpenHelper oDbHelper;
 
     //Function To Add new todo. Is automatically added to database.
     public boolean addTodo(Todo todo, Context context) {
@@ -318,6 +318,28 @@ public class TodoManager {
                 selectionArgs);
         //txtOutput.setText(String.valueOf(count));
 
+    }
+
+    public void deleteDateTodo(Integer entryID) {
+        SQLiteDatabase db = oDbHelper.getWritableDatabase();
+
+        //Execute sql query to remove from database
+        //NOTE: When removing by String in SQL, value must be enclosed with ''
+        db.execSQL("DELETE FROM " + DBScheme.DateTodo.TABLE_NAME + " WHERE " + DBScheme.DateTodo._ID + " = "  + entryID.toString());
+
+        //Close the database
+        db.close();
+    }
+
+    public void deleteSportTodo(Integer entryID) {
+        SQLiteDatabase db = oDbHelper.getWritableDatabase();
+
+        //Execute sql query to remove from database
+        //NOTE: When removing by String in SQL, value must be enclosed with ''
+        db.execSQL("DELETE FROM " + DBScheme.SportTodo.TABLE_NAME + " WHERE " + DBScheme.SportTodo._ID + " = "  + entryID.toString());
+
+        //Close the database
+        db.close();
     }
 
     public void deleteDB() {

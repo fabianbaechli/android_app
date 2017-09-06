@@ -97,10 +97,11 @@ public class TodoActivity extends AppCompatActivity {
 
             //Add Value to List
             myMap.put(Integer.parseInt(pair.getKey().toString()), pair.getValue().toString());
-
             it.remove(); // avoids a ConcurrentModificationException
         }
-
         adapter.notifyDataSetChanged();
+    }
+    public void removeItemFromList(int index) {
+        loadTodo();
     }
 }
