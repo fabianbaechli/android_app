@@ -1,7 +1,6 @@
 package zli.todoplus;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,7 @@ class TodoListAdapter extends BaseAdapter implements ListAdapter {
     private Map<Integer, String> list = new LinkedHashMap<>();
     private TodoActivity context;
 
-    public TodoListAdapter(Map<Integer, String> list, TodoActivity context) {
+    TodoListAdapter(Map<Integer, String> list, TodoActivity context) {
         this.list = list;
         this.context = context;
     }
@@ -55,7 +54,7 @@ class TodoListAdapter extends BaseAdapter implements ListAdapter {
         final String title = parts[0];
         final String type = parts[1];
         final String databaseId = parts[2];
-        final String state = parts[3];
+        final String[] state = {parts[3]};
         final String description = parts[4];
 
         listItemText.setText(title);
@@ -64,16 +63,22 @@ class TodoListAdapter extends BaseAdapter implements ListAdapter {
         //Handle buttons and add onClickListeners
         Button editBtn = view.findViewById(R.id.btnEdit);
 
-        if(state.equals("active")){
-            editBtn.setText("PAUSE");
-        } else if(state.equals("pending")){
-            editBtn.setText("DONE");
-        } else if(state.equals("inactive")){
-            editBtn.setText("START");
-        } else if(state.equals("done")){
-            editBtn.setText("END");
-        } else if(state.equals("")){
-            editBtn.setText("");
+        switch (state[0]) {
+            case "active":
+                editBtn.setText("PAUSE");
+                break;
+            case "pending":
+                editBtn.setText("DONE");
+                break;
+            case "inactive":
+                editBtn.setText("START");
+                break;
+            case "done":
+                editBtn.setText("END");
+                break;
+            case "":
+                editBtn.setText("");
+                break;
         }
 
         editBtn.setOnClickListener(new View.OnClickListener() {
@@ -86,10 +91,21 @@ class TodoListAdapter extends BaseAdapter implements ListAdapter {
                     context.manager.deleteDateTodo(databaseId);
                     context.loadTodo();
                 } else {
-                    System.out.println("deleting sport todo");
-                    context.manager.deleteSportTodo(databaseId);
-                    context.loadTodo();
+                    switch (state[0]) {
+                        case "inactive":
+                            context.manager.setSportTodoActive(databaseId);
+                            state[0] = "active";
+                            break;
+                        case "done":
+                            context.manager.deleteSportTodo(databaseId);
+                            break;
+                        case "active":
+                            context.manager.setSportTodoInactive(databaseId);
+                            state[0] = "inactive";
+                            break;
+                    }
                 }
+                context.loadTodo();
                 notifyDataSetChanged();
             }
         });
