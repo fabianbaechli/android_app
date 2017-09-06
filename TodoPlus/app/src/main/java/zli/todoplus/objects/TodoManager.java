@@ -1,27 +1,16 @@
 package zli.todoplus.objects;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import zli.todoplus.TodoActivity;
 import zli.todoplus.database.DBScheme;
 import zli.todoplus.database.TodoDBOpenHelper;
-import zli.todoplus.notification.MyReceiver;
 
 /**
  * Created by yvokeller on 02.09.17.

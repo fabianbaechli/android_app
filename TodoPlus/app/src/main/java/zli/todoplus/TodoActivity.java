@@ -19,7 +19,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import zli.todoplus.objects.SportTodo;
 import zli.todoplus.objects.TodoManager;
 
 public class TodoActivity extends AppCompatActivity implements SensorEventListener {
@@ -29,6 +28,7 @@ public class TodoActivity extends AppCompatActivity implements SensorEventListen
     private ListView list;
     private SensorManager mSensorManager;
     private Sensor mStepDetectorSensor;
+    private static boolean firstInit = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,8 @@ public class TodoActivity extends AppCompatActivity implements SensorEventListen
         loadTodo();
 
         //Sensor Stuff
-        if (mSensorManager == null) {
+        if (firstInit) {
+            System.out.println("sensor added");
             mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
             if (mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR) != null) {
                 mStepDetectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
@@ -58,6 +59,7 @@ public class TodoActivity extends AppCompatActivity implements SensorEventListen
             } else {
                 System.out.println("Sensor not aviable");
             }
+            firstInit = false;
         }
     }
 
@@ -95,13 +97,6 @@ public class TodoActivity extends AppCompatActivity implements SensorEventListen
         list = (ListView) findViewById(R.id.list);
         list.setAdapter(adapter);
 
-
-        //manager.addTodo(new SportTodo("Step 100", "active", true, 100));
-        //manager.addTodo(new SportTodo("Step 200", "active", true, 200));
-        //manager.addTodo(new SportTodo("Step 300", "inactive", true, 300));
-
-        manager.newStepDone();
-
         //Load Data
         Map dataMap = manager.returnData();
         myMap.clear();
@@ -119,6 +114,7 @@ public class TodoActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
+        System.out.println(sensorEvent.toString());
         System.out.println("new step registered!");
         manager.newStepDone();
         loadTodo();
