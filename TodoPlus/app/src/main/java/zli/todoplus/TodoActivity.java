@@ -19,6 +19,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import zli.todoplus.objects.SportTodo;
 import zli.todoplus.objects.TodoManager;
 
 public class TodoActivity extends AppCompatActivity implements SensorEventListener {
@@ -93,6 +94,13 @@ public class TodoActivity extends AppCompatActivity implements SensorEventListen
         //Setup List
         list = (ListView) findViewById(R.id.list);
         list.setAdapter(adapter);
+
+
+        //manager.addTodo(new SportTodo("Step 100", "active", true, 100));
+        //manager.addTodo(new SportTodo("Step 200", "active", true, 200));
+        //manager.addTodo(new SportTodo("Step 300", "inactive", true, 300));
+
+        manager.newStepDone();
 
         //Load Data
         Map dataMap = manager.returnData();

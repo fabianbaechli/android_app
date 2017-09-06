@@ -121,8 +121,8 @@ public class TodoManager {
         cursor = db.query(
                 DBScheme.SportTodo.TABLE_NAME,            // The table to query
                 projection,                               // The columns to return
-                selection,                                // The columns for the WHERE clause
-                selectionArgs,                            // The values for the WHERE clause
+                null,                                // The columns for the WHERE clause
+                null,                            // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                     // don't filter by row groups
                 sortOrder                                 // The sort order
@@ -377,46 +377,97 @@ public class TodoManager {
     public boolean newStepDone() {
         boolean createSuccessful = false;
         int currentStepCounts = 0;
+        int id;
 
-        String selectQuery = "SELECT " + DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE + " FROM " +
-                DBScheme.SportTodo.TABLE_NAME + " WHERE " + DBScheme.SportTodo.COLUMN_NAME_TITLE + " = 'Test321'";
+        String selectQuery = "SELECT " + DBScheme.SportTodo._ID +", " + DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE + " FROM " +
+                DBScheme.SportTodo.TABLE_NAME + " WHERE " + DBScheme.SportTodo.COLUMN_NAME_STATE + " = 'active'";
 
         try {
             SQLiteDatabase db = oDbHelper.getWritableDatabase();
             Cursor c = db.rawQuery(selectQuery, null);
 
-            if (c.moveToFirst()) {
-                do {
-                    //var = amount of steps done at the moment
-                    currentStepCounts = c.getInt((c.getColumnIndex(DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE)));
-                } while (c.moveToNext());
-            }
+            while (c.moveToNext()) {
+                System.out.println("entered loop");
 
+                //currentStepCounts = amount of steps done at the moment
+                id = c.getInt((c.getColumnIndex(DBScheme.SportTodo._ID)));
+                currentStepCounts = c.getInt((c.getColumnIndex(DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE)));
+
+                System.out.println("got values: " + id + " / " + currentStepCounts);
+
+                //Increase Value + 1
+                try {
+                    SQLiteDatabase db2 = oDbHelper.getWritableDatabase();
+                    ContentValues values = new ContentValues();
+
+                    //Sensor changed --> Add 1
+                    values.put(DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE, ++currentStepCounts);
+
+                    int row = db.update(DBScheme.SportTodo.TABLE_NAME,
+                            values,
+                            DBScheme.SportTodo._ID + " = " + id,
+                            null);
+
+                    if (row == 1) {
+                        createSuccessful = true;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            c.close();
             db.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        return createSuccessful;
+    }
+
+    public boolean setSportTodoActive(String todoID) {
+        boolean successful = false;
         try {
             SQLiteDatabase db = oDbHelper.getWritableDatabase();
             ContentValues values = new ContentValues();
 
             //Sensor changed --> Add 1
-            values.put(DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE, ++currentStepCounts);
+            values.put(DBScheme.SportTodo.COLUMN_NAME_STATE, "active");
 
             int row = db.update(DBScheme.SportTodo.TABLE_NAME,
                     values,
-                    DBScheme.SportTodo.COLUMN_NAME_TITLE + " = 'Test321'",
+                    DBScheme.SportTodo._ID + " = " + todoID,
                     null);
 
             if (row == 1) {
-                createSuccessful = true;
+                successful = true;
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return createSuccessful;
+        return successful;
+    }
+
+    public boolean setSportTodoInactive(String todoID) {
+        boolean successful = false;
+        try {
+            SQLiteDatabase db = oDbHelper.getWritableDatabase();
+            ContentValues values = new ContentValues();
+
+            //Sensor changed --> Add 1
+            values.put(DBScheme.SportTodo.COLUMN_NAME_STATE, "inactive");
+
+            int row = db.update(DBScheme.SportTodo.TABLE_NAME,
+                    values,
+                    DBScheme.SportTodo._ID + " = " + todoID,
+                    null);
+
+            if (row == 1) {
+                successful = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return successful;
     }
 
 

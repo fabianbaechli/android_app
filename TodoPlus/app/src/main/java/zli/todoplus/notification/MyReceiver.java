@@ -15,6 +15,10 @@ public class MyReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         notifyIntent = new Intent(context, MyNewIntentService.class);
+
+        String todoName = notifyIntent.getStringExtra("todoName");
+        notifyIntent.putExtra("todoName2", todoName);
+
         context.startService(notifyIntent);
     }
 }

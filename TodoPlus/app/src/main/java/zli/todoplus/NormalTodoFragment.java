@@ -89,8 +89,11 @@ public class NormalTodoFragment extends Fragment implements View.OnClickListener
                     startActivity(changeActivity);
 
                     Intent notifyIntent = new Intent(getActivity(), MyReceiver.class);
+                    System.out.println("Name:" + todoDescription.getText().toString());
+
                     PendingIntent pendingIntent = PendingIntent.getBroadcast
                             (getActivity(), 2, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
                     AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
                     System.out.println(myCalendar.getTimeInMillis());
                     alarmManager.set(AlarmManager.RTC_WAKEUP, myCalendar.getTimeInMillis(), pendingIntent);

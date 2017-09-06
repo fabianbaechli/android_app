@@ -17,8 +17,11 @@ public class MyNewIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         Notification.Builder builder = new Notification.Builder(this);
-        builder.setContentTitle("You have an open Todo!");
-        builder.setContentText("This is the Body");
+
+        String todoName = intent.getStringExtra("todoName2");
+
+        builder.setContentTitle("Todo: " + todoName);
+        builder.setContentText("You have an open Todo!");
         builder.setSmallIcon(R.drawable.ic_todo_reminder);
         Intent notifyIntent = new Intent(this, TodoActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 2, notifyIntent,
