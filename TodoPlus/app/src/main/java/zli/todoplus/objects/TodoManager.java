@@ -320,6 +320,28 @@ public class TodoManager {
 
     }
 
+    public void deleteDateTodo(Integer entryID) {
+        SQLiteDatabase db = oDbHelper.getWritableDatabase();
+
+        //Execute sql query to remove from database
+        //NOTE: When removing by String in SQL, value must be enclosed with ''
+        db.execSQL("DELETE FROM " + DBScheme.DateTodo.TABLE_NAME + " WHERE " + DBScheme.DateTodo._ID + " = "  + entryID.toString());
+
+        //Close the database
+        db.close();
+    }
+
+    public void deleteSportTodo(Integer entryID) {
+        SQLiteDatabase db = oDbHelper.getWritableDatabase();
+
+        //Execute sql query to remove from database
+        //NOTE: When removing by String in SQL, value must be enclosed with ''
+        db.execSQL("DELETE FROM " + DBScheme.SportTodo.TABLE_NAME + " WHERE " + DBScheme.SportTodo._ID + " = "  + entryID.toString());
+
+        //Close the database
+        db.close();
+    }
+
     public void deleteDB() {
         SQLiteDatabase db = oDbHelper.getWritableDatabase();
 

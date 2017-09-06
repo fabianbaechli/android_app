@@ -76,6 +76,7 @@ public class TodoListAdapter extends BaseAdapter implements ListAdapter {
             } else {
                 editBtn.setText("Quit!");
             }
+
             final int entry = position;
             editBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
