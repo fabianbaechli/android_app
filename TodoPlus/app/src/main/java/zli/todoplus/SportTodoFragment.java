@@ -35,7 +35,7 @@ public class SportTodoFragment extends Fragment implements View.OnClickListener 
                 if (!todoDescription.getText().toString().equals("") &&
                         !stepCount.getText().toString().equals("")) {
                     TodoManager manager = new TodoManager(getActivity());
-                    manager.addTodo(new SportTodo(todoDescription.getText().toString(), "active",
+                    manager.addTodo(new SportTodo(todoDescription.getText().toString(), "inactive",
                             false, Integer.parseInt(stepCount.getText().toString())));
                     Intent changeActivity = new Intent(getActivity(), TodoActivity.class);
                     startActivity(changeActivity);

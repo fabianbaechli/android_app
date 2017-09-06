@@ -100,9 +100,9 @@ public class TodoManager {
             final String databaseId = Long.toString(id);
 
             if(priority == 1){
-                list.put(count, title + ";" + "dateTodo;" + databaseId + ";" + newReminderDate + " | PRIORITY");
+                list.put(count, title + ";" + "dateTodo;" + databaseId + ";" + state + ";" + newReminderDate + " | PRIORITY");
             } else {
-                list.put(count, title + ";" + "dateTodo;" + databaseId + ";" + newReminderDate + "");
+                list.put(count, title + ";" + "dateTodo;" + databaseId + ";" + state + ";" + newReminderDate + "");
             }
 
             //list.put(count, title + ";" + "dateTodo;" + databaseId + ";" + newReminderDate + " | " + state + " | " + String.valueOf(priority));
@@ -155,16 +155,16 @@ public class TodoManager {
             final String databaseId = Long.toString(id);
 
             if(state.equals("active")){
-                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + stepsdone + " / " +
+                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state+ ";" + stepsdone + " / " +
                         stepgoal + " steps done. | ACTIVE");
             } else if(state.equals("inactive")){
-                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + stepsdone + " / " +
+                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state+ ";" + stepsdone + " / " +
                         stepgoal + " steps done. | INACTIVE");
             } else if(state.equals("done")){
-                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + stepsdone + " / " +
+                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state+ ";" + stepsdone + " / " +
                         stepgoal + " steps done. | GOAL REACHED");
             } else {
-                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + stepsdone + " / " +
+                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state+ ";" + stepsdone + " / " +
                         stepgoal + " steps done. | UNKNOWN STATE");
             }
 

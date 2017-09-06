@@ -55,14 +55,26 @@ class TodoListAdapter extends BaseAdapter implements ListAdapter {
         final String title = parts[0];
         final String type = parts[1];
         final String databaseId = parts[2];
-        final String description = parts[3];
-        //final String priority = parts[4];
+        final String state = parts[3];
+        final String description = parts[4];
+
         listItemText.setText(title);
         listItemText2.setText(description);
 
         //Handle buttons and add onClickListeners
         Button editBtn = view.findViewById(R.id.btnEdit);
 
+        if(state.equals("active")){
+            editBtn.setText("PAUSE");
+        } else if(state.equals("pending")){
+            editBtn.setText("DONE");
+        } else if(state.equals("inactive")){
+            editBtn.setText("START");
+        } else if(state.equals("done")){
+            editBtn.setText("END");
+        } else if(state.equals("")){
+            editBtn.setText("");
+        }
 
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
