@@ -1,7 +1,6 @@
 package zli.todoplus;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,22 +8,16 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import zli.todoplus.database.DBScheme;
 import zli.todoplus.objects.TodoManager;
-
-/**
- * Created by yvokeller on 31.08.17.
- */
 
 public class TodoListAdapter extends BaseAdapter implements ListAdapter {
     private Map<Integer, String> list = new LinkedHashMap<>();
-    private Context context;
+    private TodoActivity context;
 
-    public TodoListAdapter(Map<Integer, String> list, Context context) {
+    public TodoListAdapter(Map<Integer, String> list, TodoActivity context) {
         this.list = list;
         this.context = context;
     }
@@ -68,15 +61,20 @@ public class TodoListAdapter extends BaseAdapter implements ListAdapter {
         listItemText2.setText(description);
 
         //Handle buttons and add onClickListeners
-        Button editBtn = (Button) view.findViewById(R.id.btnEdit);
+        Button editBtn = view.findViewById(R.id.btnEdit);
 
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //do something
                 if (type.equals("dateTodo")) {
+                    System.out.println("deleting date todo");
+                    context.manager.deleteDateTodo(databaseId);
+                    context.loadTodo();
                 } else {
-
+                    System.out.println("deleting sport todo");
+                    context.manager.deleteSportTodo(databaseId);
+                    context.loadTodo();
                 }
                 notifyDataSetChanged();
             }
