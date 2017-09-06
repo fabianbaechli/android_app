@@ -31,6 +31,8 @@ public class TodoActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager mSensorManager;
     private Sensor mStepDetectorSensor;
 
+    boolean countStep = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,10 +113,14 @@ public class TodoActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        System.out.println("new step registered!");
-        manager.newStepDone();
+        if(countStep = true){
+            System.out.println("new step registered!");
+            manager.newStepDone();
 
-        System.out.println(sensorEvent.values[0]);
+            countStep = false;
+        } else {
+            countStep = true;
+        }
     }
 
     @Override
