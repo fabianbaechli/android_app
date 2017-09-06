@@ -342,6 +342,35 @@ public class TodoManager {
         db.close();
     }
 
+    public boolean newStepDone2(Integer countedSteps) {
+        boolean createSuccessful = false;
+        int currentStepCounts = 0;
+
+        String selectQuery = "SELECT " + DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE + " FROM " + DBScheme.SportTodo.TABLE_NAME + " WHERE " + DBScheme.SportTodo.COLUMN_NAME_TITLE + " = 'Test321'";
+
+        try {
+            SQLiteDatabase db = oDbHelper.getWritableDatabase();
+            ContentValues values = new ContentValues();
+
+            //Sensor changed --> Add 1
+            values.put(DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE, countedSteps);
+
+            int row = db.update(DBScheme.SportTodo.TABLE_NAME,
+                    values,
+                    DBScheme.SportTodo.COLUMN_NAME_TITLE + " = 'Test321'",
+                    null);
+
+            if (row == 1) {
+                createSuccessful = true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return createSuccessful;
+    }
+
+
     public boolean newStepDone() {
         boolean createSuccessful = false;
         int currentStepCounts = 0;

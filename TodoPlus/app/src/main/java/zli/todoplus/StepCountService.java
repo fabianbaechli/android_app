@@ -19,11 +19,11 @@ import zli.todoplus.objects.TodoManager;
 public class StepCountService extends Service implements SensorEventListener {
 
     private SensorManager mSensorManager;
-    private Sensor mStepDetectorSensor;
+    private Sensor mStepCounterSensor;
     private TodoManager manager;
 
     @Override
-    public void onCreate() {
+    /*public void onCreate() {
         super.onCreate();
 
         mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
@@ -35,6 +35,19 @@ public class StepCountService extends Service implements SensorEventListener {
 
         manager = new TodoManager(this);
         //System.out.println("registered service");
+    }*/
+
+    public void onCreate() {
+        super.onCreate();
+
+        mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
+        if (mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null) {
+            mStepCounterSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+
+            mSensorManager.registerListener(this, mStepCounterSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        }
+
+        manager = new TodoManager(this);
     }
 
     @Override
@@ -43,10 +56,19 @@ public class StepCountService extends Service implements SensorEventListener {
         return Service.START_STICKY;
     }
 
+    /*
     @Override
     public void onSensorChanged(SensorEvent event) {
         System.out.println("sensor changed");
         manager.newStepDone();
+    }*/
+
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        System.out.println("sensor changed");
+        Integer steps = Math.round(event.values[0]);
+        manager.newStepDone2(steps);
     }
 
     @Nullable
