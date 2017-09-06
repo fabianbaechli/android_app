@@ -81,8 +81,6 @@ public class TodoActivity extends AppCompatActivity {
         list = (ListView) findViewById(R.id.list);
         list.setAdapter(adapter);
 
-        manager.newStepDone();
-
         //Load Data
         Map dataMap = manager.returnData();
         myMap.clear();
