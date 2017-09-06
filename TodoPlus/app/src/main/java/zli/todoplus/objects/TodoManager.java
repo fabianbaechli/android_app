@@ -236,13 +236,9 @@ public class TodoManager {
             itemIds.add(String.valueOf(id) + " | " + title + " | " + creationDate + " | " + state + " | " + String.valueOf(priority));
         }
         cursor.close();
-
-        //txtOutput.setText("Length: " + itemIds.size());
-
         for (int i = 0; i < itemIds.size(); i++) {
             //txtOutput.setText(String.valueOf(itemIds.get(i)));
         }
-
     }
 
     public void readSportTodo() {
