@@ -141,7 +141,8 @@ public class TodoManager {
             int timeused = cursor.getInt(cursor.getColumnIndexOrThrow(DBScheme.SportTodo.COLUMN_NAME_TIME_USED));
 
             final String databaseId = Long.toString(id);
-            list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + stepsdone + " / " + stepgoal + " steps done. | Used time: " + String.valueOf(timeused));
+            list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + stepsdone + " / " +
+                    stepgoal + " steps done. | Used time: " + String.valueOf(timeused));
             count++;
         }
         cursor.close();
@@ -286,7 +287,8 @@ public class TodoManager {
             int stepsdone = cursor.getInt(cursor.getColumnIndexOrThrow(DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE));
             int timeused = cursor.getInt(cursor.getColumnIndexOrThrow(DBScheme.SportTodo.COLUMN_NAME_TIME_USED));
 
-            itemIds.add(String.valueOf(id) + " | " + title + " | " + creationDate + " | " + state + " | " + String.valueOf(priority) + " | " + String.valueOf(stepgoal) + " | " + String.valueOf(stepsdone) + " | " + String.valueOf(timeused));
+            itemIds.add(String.valueOf(id) + " | " + title + " | " + creationDate + " | " + state + " | " + String.valueOf(priority) +
+                    " | " + String.valueOf(stepgoal) + " | " + String.valueOf(stepsdone) + " | " + String.valueOf(timeused));
         }
         cursor.close();
 
@@ -346,7 +348,8 @@ public class TodoManager {
         boolean createSuccessful = false;
         int currentStepCounts = 0;
 
-        String selectQuery = "SELECT " + DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE + " FROM " + DBScheme.SportTodo.TABLE_NAME + " WHERE " + DBScheme.SportTodo.COLUMN_NAME_TITLE + " = 'Test321'";
+        String selectQuery = "SELECT " + DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE + " FROM " +
+                DBScheme.SportTodo.TABLE_NAME + " WHERE " + DBScheme.SportTodo.COLUMN_NAME_TITLE + " = 'Test321'";
 
         try {
             SQLiteDatabase db = oDbHelper.getWritableDatabase();
@@ -375,7 +378,8 @@ public class TodoManager {
         boolean createSuccessful = false;
         int currentStepCounts = 0;
 
-        String selectQuery = "SELECT " + DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE + " FROM " + DBScheme.SportTodo.TABLE_NAME + " WHERE " + DBScheme.SportTodo.COLUMN_NAME_TITLE + " = 'Test321'";
+        String selectQuery = "SELECT " + DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE + " FROM " +
+                DBScheme.SportTodo.TABLE_NAME + " WHERE " + DBScheme.SportTodo.COLUMN_NAME_TITLE + " = 'Test321'";
 
         try {
             SQLiteDatabase db = oDbHelper.getWritableDatabase();

@@ -11,8 +11,6 @@ import zli.todoplus.TodoActivity;
 
 public class MyNewIntentService extends IntentService {
     private static final int NOTIFICATION_ID = 3;
-
-
     public MyNewIntentService() {
         super("MyNewIntentService");
     }
@@ -20,11 +18,12 @@ public class MyNewIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         Notification.Builder builder = new Notification.Builder(this);
-        builder.setContentTitle("My Titel");
+        builder.setContentTitle("You have an open Todo!");
         builder.setContentText("This is the Body");
         builder.setSmallIcon(R.drawable.ic_todo_icon);
         Intent notifyIntent = new Intent(this, TodoActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 2, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 2, notifyIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
 
         //to be able to launch your activity from the notification
         builder.setContentIntent(pendingIntent);
