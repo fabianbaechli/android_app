@@ -5,7 +5,6 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.v4.app.NotificationManagerCompat;
-
 import zli.todoplus.R;
 import zli.todoplus.TodoActivity;
 
@@ -20,7 +19,7 @@ public class MyNewIntentService extends IntentService {
         Notification.Builder builder = new Notification.Builder(this);
         builder.setContentTitle("You have an open Todo!");
         builder.setContentText("This is the Body");
-        builder.setSmallIcon(R.drawable.ic_todo_icon);
+        builder.setSmallIcon(R.drawable.ic_todo_reminder);
         Intent notifyIntent = new Intent(this, TodoActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 2, notifyIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
