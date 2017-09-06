@@ -90,7 +90,8 @@ public class TodoManager {
             int priority = cursor.getInt(cursor.getColumnIndexOrThrow(DBScheme.DateTodo.COLUMN_NAME_PRIORITY));
 
             content = content + title + ";" + reminderDate + " | " + state + " | " + String.valueOf(priority);
-            list.put(count, title + ";" + reminderDate + " | " + state + " | " + String.valueOf(priority));
+            final String databaseId = Long.toString(id);
+            list.put(count, title + ";" + "dateTodo;" + databaseId + ";" + reminderDate + " | " + state + " | " + String.valueOf(priority));
             count++;
         }
         cursor.close();
@@ -137,7 +138,8 @@ public class TodoManager {
             int stepsdone = cursor.getInt(cursor.getColumnIndexOrThrow(DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE));
             int timeused = cursor.getInt(cursor.getColumnIndexOrThrow(DBScheme.SportTodo.COLUMN_NAME_TIME_USED));
 
-            list.put(count, title + ";" + stepsdone + " / " + stepgoal + " steps done. | Used time: " + String.valueOf(timeused));
+            final String databaseId = Long.toString(id);
+            list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + stepsdone + " / " + stepgoal + " steps done. | Used time: " + String.valueOf(timeused));
             count++;
         }
         cursor.close();

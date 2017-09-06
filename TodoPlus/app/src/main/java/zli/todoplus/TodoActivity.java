@@ -97,6 +97,10 @@ public class TodoActivity extends AppCompatActivity {
 
             //Add Value to List
             myMap.put(Integer.parseInt(pair.getKey().toString()), pair.getValue().toString());
+<<<<<<< Updated upstream
+=======
+            System.out.println(pair.getKey().toString());
+>>>>>>> Stashed changes
             it.remove(); // avoids a ConcurrentModificationException
         }
         adapter.notifyDataSetChanged();

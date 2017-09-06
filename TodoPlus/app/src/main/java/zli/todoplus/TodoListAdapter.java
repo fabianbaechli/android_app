@@ -13,6 +13,10 @@ import android.widget.TextView;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+<<<<<<< Updated upstream
+=======
+import zli.todoplus.database.DBScheme;
+>>>>>>> Stashed changes
 import zli.todoplus.objects.TodoManager;
 
 /**
@@ -58,6 +62,7 @@ public class TodoListAdapter extends BaseAdapter implements ListAdapter {
         TextView listItemText2 = view.findViewById(R.id.list_item_string_2);
 
         String value = list.get(position);
+<<<<<<< Updated upstream
         if (value != null) {
             String[] parts = value.split(";");
             final String todoDescription = parts[0];
@@ -75,6 +80,28 @@ public class TodoListAdapter extends BaseAdapter implements ListAdapter {
                 editBtn.setText("Start!");
             } else {
                 editBtn.setText("Quit!");
+=======
+        String[] parts = value.split(";");
+        final String title = parts[0];
+        final String type = parts[1];
+        final String databaseId = parts[2];
+        final String description = parts[3];
+        listItemText.setText(title);
+        listItemText2.setText(description);
+
+        //Handle buttons and add onClickListeners
+        Button editBtn = (Button) view.findViewById(R.id.btnEdit);
+
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //do something
+                if (type.equals("dateTodo")) {
+                } else {
+
+                }
+                notifyDataSetChanged();
+>>>>>>> Stashed changes
             }
 
             final int entry = position;
