@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.app.PendingIntent;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,11 +16,14 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TimePicker;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
 import zli.todoplus.notification.MyReceiver;
 import zli.todoplus.objects.DateTodo;
 import zli.todoplus.objects.TodoManager;
@@ -33,6 +37,7 @@ public class NormalTodoFragment extends Fragment implements View.OnClickListener
     private EditText reminderInfo;
     private EditText todoDescription;
     private FloatingActionButton createButton;
+    private Button setTimeButton;
     Calendar myCalendar = Calendar.getInstance();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,12 +49,15 @@ public class NormalTodoFragment extends Fragment implements View.OnClickListener
         reminderInfo = view.findViewById(R.id.reminderInfo);
         createButton = view.findViewById(R.id.createTodoFab);
         todoDescription = view.findViewById(R.id.todoDescription);
+        setTimeButton = view.findViewById(R.id.setTimeButton);
 
         // Sets the click listener for the elements, which calls onClick in this class
         priorityToggle.setOnClickListener(this);
         reminderToggle.setOnClickListener(this);
         setReminderButton.setEnabled(false);
+        setTimeButton.setEnabled(false);
         setReminderButton.setOnClickListener(this);
+        setTimeButton.setOnClickListener(this);
         createButton.setOnClickListener(this);
         return view;
     }
@@ -98,6 +106,20 @@ public class NormalTodoFragment extends Fragment implements View.OnClickListener
                     //System.out.println(myCalendar.getTimeInMillis());
                     alarmManager.set(AlarmManager.RTC_WAKEUP, myCalendar.getTimeInMillis(), pendingIntent);
                 }
+            case R.id.setTimeButton:
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        myCalendar.set(Calendar.HOUR_OF_DAY, selectedHour);
+                        myCalendar.set(Calendar.MINUTE, selectedMinute);
+                    }
+                }, hour, minute, true);
+                mTimePicker.setTitle("Select your time");
+                mTimePicker.show();
         }
     }
 
@@ -108,6 +130,7 @@ public class NormalTodoFragment extends Fragment implements View.OnClickListener
             myCalendar.set(Calendar.MONTH, monthOfYear);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             updateLabel();
+            setTimeButton.setEnabled(true);
         }
     };
 
