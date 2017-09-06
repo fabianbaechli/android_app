@@ -23,7 +23,7 @@ import zli.todoplus.objects.TodoManager;
 public class TodoActivity extends AppCompatActivity {
     Map<Integer, String> myMap = new LinkedHashMap<>();
     TodoListAdapter adapter = new TodoListAdapter(myMap, this);
-    TodoManager manager;
+    TodoManager manager = new TodoManager(this);
     ListView list;
     Button btnAdd;
 
@@ -77,16 +77,13 @@ public class TodoActivity extends AppCompatActivity {
     }
 
     public void loadTodo() {
-        manager = new TodoManager(this);
-        //TextView textView = (TextView) findViewById(R.id.textView);
-        
         //Setup List
         list = (ListView) findViewById(R.id.list);
         list.setAdapter(adapter);
 
         //Load Data
-        Map<Integer, String> dataMap = manager.returnData();
-
+        Map dataMap = manager.returnData();
+        myMap.clear();
         Iterator it = dataMap.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
