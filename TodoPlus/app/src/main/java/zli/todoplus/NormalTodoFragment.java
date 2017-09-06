@@ -1,7 +1,10 @@
 package zli.todoplus;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Fragment;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,6 +22,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import zli.todoplus.notification.MyReceiver;
 import zli.todoplus.objects.DateTodo;
 import zli.todoplus.objects.SportTodo;
 import zli.todoplus.objects.Todo;
@@ -87,6 +91,15 @@ public class NormalTodoFragment extends Fragment implements View.OnClickListener
                             isPriorityEntry, myCalendar.getTime()));
                     Intent changeActivity = new Intent(getActivity(), TodoActivity.class);
                     startActivity(changeActivity);
+
+                    Intent notifyIntent = new Intent(getActivity(), MyReceiver.class);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast
+                            (getActivity(), 2, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+                    //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
+                    //        1000 * 60 * 60 * 24, pendingIntent);
+                    System.out.println(myCalendar.getTimeInMillis());
+                    alarmManager.set(AlarmManager.RTC_WAKEUP, myCalendar.getTimeInMillis(), pendingIntent);
                 }
         }
     }

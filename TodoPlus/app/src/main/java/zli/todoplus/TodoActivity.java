@@ -10,14 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-
-import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import zli.todoplus.objects.DateTodo;
-import zli.todoplus.objects.SportTodo;
 import zli.todoplus.objects.TodoManager;
 
 public class TodoActivity extends AppCompatActivity {

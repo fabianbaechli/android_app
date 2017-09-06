@@ -21,7 +21,16 @@
         </activity>
         <activity
             android:name=".CreateTodoActivity"
-            android:label="@string/title_activity_create_todo"></activity>
+            android:label="@string/title_activity_create_todo" />
+        <receiver
+            android:name=".notification.MyReceiver"
+            android:enabled="true"
+            android:exported="false" >
+        </receiver>
+        <service
+            android:name=".notification.MyNewIntentService"
+            android:exported="false" >
+        </service>
     </application>
 
 </manifest>
