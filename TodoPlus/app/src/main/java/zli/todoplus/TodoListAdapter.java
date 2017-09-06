@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class TodoListAdapter extends BaseAdapter implements ListAdapter {
+class TodoListAdapter extends BaseAdapter implements ListAdapter {
     private Map<Integer, String> list = new LinkedHashMap<>();
     private TodoActivity context;
 

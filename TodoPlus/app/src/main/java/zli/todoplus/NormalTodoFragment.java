@@ -15,17 +15,13 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Switch;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-
 import zli.todoplus.notification.MyReceiver;
 import zli.todoplus.objects.DateTodo;
-import zli.todoplus.objects.SportTodo;
-import zli.todoplus.objects.Todo;
 import zli.todoplus.objects.TodoManager;
 
 public class NormalTodoFragment extends Fragment implements View.OnClickListener {
@@ -96,8 +92,6 @@ public class NormalTodoFragment extends Fragment implements View.OnClickListener
                     PendingIntent pendingIntent = PendingIntent.getBroadcast
                             (getActivity(), 2, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                     AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-                    //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
-                    //        1000 * 60 * 60 * 24, pendingIntent);
                     System.out.println(myCalendar.getTimeInMillis());
                     alarmManager.set(AlarmManager.RTC_WAKEUP, myCalendar.getTimeInMillis(), pendingIntent);
                 }
