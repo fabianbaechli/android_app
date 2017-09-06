@@ -18,9 +18,7 @@ public class MyNewIntentService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         Notification.Builder builder = new Notification.Builder(this);
 
-        String todoName = intent.getStringExtra("todoName2");
-
-        builder.setContentTitle("Todo: " + todoName);
+        builder.setContentTitle("Todo+");
         builder.setContentText("You have an open Todo!");
         builder.setSmallIcon(R.drawable.ic_todo_reminder);
         Intent notifyIntent = new Intent(this, TodoActivity.class);
