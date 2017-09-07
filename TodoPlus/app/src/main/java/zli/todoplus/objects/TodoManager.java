@@ -169,7 +169,7 @@ public class TodoManager {
                         stepgoal + " steps done. | Time used: " + timeused_final);
             } else if (state.equals("done")) {
                 list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state + ";" + stepgoal + ";" + stepsdone + ";" + stepsdone + " / " +
-                        stepgoal + " steps done. | Time used: " + timeused_final);
+                        stepgoal + " steps done. | Goal reached.");
             } else {
                 list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state + ";" + stepgoal + ";" + stepsdone + ";" + stepsdone + " / " +
                         stepgoal + " steps done. | Time used: " + timeused_final);

@@ -67,7 +67,6 @@ class TodoListAdapter extends BaseAdapter implements ListAdapter {
         int iDone = Integer.parseInt(done);
 
         if(iGoal == iDone || iGoal == (iDone - 1) || iGoal == (iDone + 1) && type.equals("sportTodo")){
-            context.manager.calculateUsedTime(databaseId);
             context.loadTodo();
         }
 
