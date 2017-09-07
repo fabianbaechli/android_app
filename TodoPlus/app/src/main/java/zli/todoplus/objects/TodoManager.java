@@ -466,14 +466,14 @@ public class TodoManager {
             Cursor c = db.rawQuery(selectQuery, null);
 
             while (c.moveToNext()) {
-                System.out.println("entered loop");
-
                 //currentStepCounts = amount of steps done at the moment
                 todoID = c.getInt((c.getColumnIndex(DBScheme.SportTodo._ID)));
                 currentStepCounts = c.getInt((c.getColumnIndex(DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE)));
                 stepGoal = c.getInt((c.getColumnIndex(DBScheme.SportTodo.COLUMN_NAME_STEP_GOAL)));
 
-                System.out.println("got values: " + todoID + " / " + currentStepCounts + " / " + stepGoal);
+
+                //recalculate used time
+                calculateUsedTime(String.valueOf(todoID));
 
                 try {
                     SQLiteDatabase db2 = oDbHelper.getWritableDatabase();
