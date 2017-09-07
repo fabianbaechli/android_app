@@ -116,7 +116,6 @@ public class TodoActivity extends AppCompatActivity implements SensorEventListen
     public void onSensorChanged(SensorEvent sensorEvent) {
         loadTodo();
         manager.newStepDone();
-        loadTodo();
     }
 
     @Override

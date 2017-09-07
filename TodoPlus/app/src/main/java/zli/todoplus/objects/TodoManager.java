@@ -472,7 +472,7 @@ public class TodoManager {
                 stepGoal = c.getInt((c.getColumnIndex(DBScheme.SportTodo.COLUMN_NAME_STEP_GOAL)));
 
                 //recalculate used time
-                calculateUsedTime(String.valueOf(todoID));
+//                calculateUsedTime(String.valueOf(todoID));
 
                 try {
                     SQLiteDatabase db2 = oDbHelper.getWritableDatabase();
