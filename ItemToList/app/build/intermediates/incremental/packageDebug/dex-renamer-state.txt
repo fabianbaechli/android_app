@@ -1,7 +1,0 @@
-#Thu Aug 31 22:26:06 CEST 2017
-base.0=/Users/yvokeller/Documents/GitHub/android_app/ItemToList/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_189c670cd9233503ae40782bdcc9bc956170fb95
-renamed.1=classes2.dex
-renamed.0=classes.dex
-file.1=/Users/yvokeller/Documents/GitHub/android_app/ItemToList/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_669ccacee586c70e11ca8bc65dc92fba541d0221/classes.dex
-base.1=/Users/yvokeller/Documents/GitHub/android_app/ItemToList/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_669ccacee586c70e11ca8bc65dc92fba541d0221
-file.0=/Users/yvokeller/Documents/GitHub/android_app/ItemToList/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_189c670cd9233503ae40782bdcc9bc956170fb95/classes.dex
