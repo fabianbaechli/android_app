@@ -84,8 +84,6 @@ class TodoListAdapter extends BaseAdapter implements ListAdapter {
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //do something
                 if (type.equals("dateTodo")) {
                     System.out.println("deleting date todo");
                     context.manager.deleteDateTodo(databaseId);

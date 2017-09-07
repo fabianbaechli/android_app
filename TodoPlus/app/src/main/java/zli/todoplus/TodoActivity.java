@@ -114,10 +114,8 @@ public class TodoActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        System.out.println(sensorEvent.toString());
-        System.out.println("new step registered!");
-        manager.newStepDone();
         loadTodo();
+        manager.newStepDone();
     }
 
     @Override
