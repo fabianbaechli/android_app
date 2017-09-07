@@ -155,7 +155,7 @@ public class TodoManager {
             String timeused_final;
 
             if (timeused_minutes > 0) {
-                timeused_final = String.valueOf(timeused_minutes) + " sec";
+                timeused_final = String.valueOf(timeused_minutes) + " min";
             } else {
                 timeused_final = String.valueOf(timeused_seconds) + " sec";
             }
@@ -470,7 +470,6 @@ public class TodoManager {
                 todoID = c.getInt((c.getColumnIndex(DBScheme.SportTodo._ID)));
                 currentStepCounts = c.getInt((c.getColumnIndex(DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE)));
                 stepGoal = c.getInt((c.getColumnIndex(DBScheme.SportTodo.COLUMN_NAME_STEP_GOAL)));
-
 
                 //recalculate used time
                 calculateUsedTime(String.valueOf(todoID));
