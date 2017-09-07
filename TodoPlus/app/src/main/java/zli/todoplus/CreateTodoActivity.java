@@ -20,6 +20,8 @@ public class CreateTodoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_todo);
 
+        getSupportActionBar().setTitle("Create New Todo");
+
         removeActiveCenterFragments();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(navigationListener);

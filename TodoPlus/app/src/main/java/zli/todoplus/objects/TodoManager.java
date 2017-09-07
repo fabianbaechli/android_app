@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import zli.todoplus.R;
+import zli.todoplus.TodoActivity;
 import zli.todoplus.database.DBScheme;
 import zli.todoplus.database.TodoDBOpenHelper;
 
@@ -491,6 +492,7 @@ public class TodoManager {
                     } else {
                         //Goal reached
                         System.out.println("step goal reached");
+
                         setSportTodoDone(String.valueOf(todoID));
 
                         NotificationCompat.Builder mBuilder =
