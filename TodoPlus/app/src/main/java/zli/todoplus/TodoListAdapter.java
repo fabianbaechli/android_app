@@ -56,10 +56,17 @@ class TodoListAdapter extends BaseAdapter implements ListAdapter {
         final String type = parts[1];
         final String databaseId = parts[2];
         final String[] state = {parts[3]};
-        final String description = parts[4];
+        final String[] goal = {parts[4]};
+        final String[] done = {parts[5]};
+        final String description = parts[6];
 
         listItemText.setText(title);
         listItemText2.setText(description);
+
+
+        if(goal.equals(done) && type.equals("sportTodo")){
+            context.loadTodo();
+        }
 
         //Handle buttons and add onClickListeners
         Button editBtn = view.findViewById(R.id.btnEdit);

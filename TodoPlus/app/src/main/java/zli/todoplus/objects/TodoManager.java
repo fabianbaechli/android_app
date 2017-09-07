@@ -97,9 +97,9 @@ public class TodoManager {
             final String databaseId = Long.toString(id);
 
             if (priority == 1) {
-                list.put(count, title + ";" + "dateTodo;" + databaseId + ";" + state + ";" + reminderDate + " | PRIORITY");
+                list.put(count, title + ";" + "dateTodo;" + databaseId + ";" + state + ";0;1;" + reminderDate + " | PRIORITY");
             } else {
-                list.put(count, title + ";" + "dateTodo;" + databaseId + ";" + state + ";" + reminderDate + "");
+                list.put(count, title + ";" + "dateTodo;" + databaseId + ";" + state + ";0;1;" + reminderDate + "");
             }
 
             //list.put(count, title + ";" + "dateTodo;" + databaseId + ";" + newReminderDate + " | " + state + " | " + String.valueOf(priority));
@@ -162,16 +162,16 @@ public class TodoManager {
             final String databaseId = Long.toString(id);
 
             if (state.equals("active")) {
-                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state + ";" + stepsdone + " / " +
+                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state + ";" + stepgoal + ";" + stepsdone + ";" + stepsdone + " / " +
                         stepgoal + " steps done. | Time used: " + timeused_final);
             } else if (state.equals("inactive")) {
-                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state + ";" + stepsdone + " / " +
+                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state + ";" + stepgoal + ";" + stepsdone + ";" + stepsdone + " / " +
                         stepgoal + " steps done. | Time used: " + timeused_final);
             } else if (state.equals("done")) {
-                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state + ";" + stepsdone + " / " +
+                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state + ";" + stepgoal + ";" + stepsdone + ";" + stepsdone + " / " +
                         stepgoal + " steps done. | Time used: " + timeused_final);
             } else {
-                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state + ";" + stepsdone + " / " +
+                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state + ";" + stepgoal + ";" + stepsdone + ";" + stepsdone + " / " +
                         stepgoal + " steps done. | Time used: " + timeused_final);
             }
 
