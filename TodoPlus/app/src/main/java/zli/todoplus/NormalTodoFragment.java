@@ -106,6 +106,7 @@ public class NormalTodoFragment extends Fragment implements View.OnClickListener
                     //System.out.println(myCalendar.getTimeInMillis());
                     alarmManager.set(AlarmManager.RTC_WAKEUP, myCalendar.getTimeInMillis(), pendingIntent);
                 }
+                break;
             case R.id.setTimeButton:
                 Calendar mcurrentTime = Calendar.getInstance();
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
@@ -120,6 +121,7 @@ public class NormalTodoFragment extends Fragment implements View.OnClickListener
                 }, hour, minute, true);
                 mTimePicker.setTitle("Select your time");
                 mTimePicker.show();
+                break;
         }
     }
 
