@@ -56,15 +56,17 @@ class TodoListAdapter extends BaseAdapter implements ListAdapter {
         final String type = parts[1];
         final String databaseId = parts[2];
         final String[] state = {parts[3]};
-        final String[] goal = {parts[4]};
-        final String[] done = {parts[5]};
+        final String goal = parts[4];
+        final String done = parts[5];
         final String description = parts[6];
 
         listItemText.setText(title);
         listItemText2.setText(description);
 
+        int iGoal = Integer.parseInt(goal);
+        int iDone = Integer.parseInt(done);
 
-        if(goal.equals(done) && type.equals("sportTodo")){
+        if(iGoal == iDone || iGoal == iDone - 1 || iGoal == iDone + 1 && type.equals("sportTodo")){
             context.loadTodo();
         }
 
