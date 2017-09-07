@@ -31,5 +31,6 @@ public final class DBScheme {
         public static final String COLUMN_NAME_STEP_GOAL = "stepgoal";
         public static final String COLUMN_NAME_STEPS_DONE = "stepsdone";
         public static final String COLUMN_NAME_TIME_USED = "timeused";
+        public static final String COLUMN_NAME_TIME_ON_START = "timeonstart";
     }
 }

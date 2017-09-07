@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class TodoDBOpenHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 5;
     public static final String DATABASE_NAME = "TodoPlus.db";
 
     public TodoDBOpenHelper(Context context) {
@@ -65,7 +65,8 @@ public class TodoDBOpenHelper extends SQLiteOpenHelper {
                     DBScheme.SportTodo.COLUMN_NAME_PRIORITY + " INTEGER," +
                     DBScheme.SportTodo.COLUMN_NAME_STEP_GOAL + " INTEGER," +
                     DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE + " INTEGER," +
-                    DBScheme.SportTodo.COLUMN_NAME_TIME_USED + " INTEGER)";
+                    DBScheme.SportTodo.COLUMN_NAME_TIME_USED + " INTEGER," +
+                    DBScheme.SportTodo.COLUMN_NAME_TIME_ON_START + " INTEGER)";
 
     private static final String SQL_DELETE_SPORT_TODO =
             "DROP TABLE IF EXISTS " + DBScheme.SportTodo.TABLE_NAME;

@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -92,6 +93,7 @@ class TodoListAdapter extends BaseAdapter implements ListAdapter {
                     switch (state[0]) {
                         case "inactive":
                             context.manager.setSportTodoActive(databaseId);
+                            context.manager.saveStartTime(databaseId);
                             state[0] = "active";
                             break;
                         case "done":
@@ -99,6 +101,7 @@ class TodoListAdapter extends BaseAdapter implements ListAdapter {
                             break;
                         case "active":
                             context.manager.setSportTodoInactive(databaseId);
+                            context.manager.calculateUsedTime(databaseId);
                             state[0] = "inactive";
                             break;
                     }
