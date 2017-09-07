@@ -22,7 +22,7 @@ public class DateTodo extends AbstractTodo {
 
     //Functions
     public String formatReminderDate(Date reminderDate){
-        DateFormat df = new SimpleDateFormat("dd.MM.YYYY");
+        DateFormat df = new SimpleDateFormat("dd.MM.YYYY HH:mm");
         String newReminderDate = df.format(reminderDate);
         return newReminderDate;
     }
