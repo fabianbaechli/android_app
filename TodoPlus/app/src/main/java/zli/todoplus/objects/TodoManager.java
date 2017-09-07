@@ -90,7 +90,7 @@ public class TodoManager {
             String reminderDate = cursor.getString(cursor.getColumnIndexOrThrow(DBScheme.DateTodo.COLUMN_NAME_REMINDER_DATE));
             String state = cursor.getString(cursor.getColumnIndexOrThrow(DBScheme.DateTodo.COLUMN_NAME_STATE));
             int priority = cursor.getInt(cursor.getColumnIndexOrThrow(DBScheme.DateTodo.COLUMN_NAME_PRIORITY));
-            
+
             System.out.println("DATE " + reminderDate);
 
             final String databaseId = Long.toString(id);
@@ -476,7 +476,7 @@ public class TodoManager {
                     SQLiteDatabase db2 = oDbHelper.getWritableDatabase();
                     ContentValues values = new ContentValues();
 
-                    if (!(currentStepCounts >= stepGoal)) {
+                    if (currentStepCounts < stepGoal){
                         //Sensor changed --> Increase StepsDone + 1
                         values.put(DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE, currentStepCounts + 2);
 
@@ -491,8 +491,8 @@ public class TodoManager {
                     } else {
                         //Goal reached
                         System.out.println("step goal reached");
-
                         setSportTodoDone(String.valueOf(todoID));
+
                         NotificationCompat.Builder mBuilder =
                                 new NotificationCompat.Builder(context)
                                         .setSmallIcon(R.drawable.ic_todo_reminder)
