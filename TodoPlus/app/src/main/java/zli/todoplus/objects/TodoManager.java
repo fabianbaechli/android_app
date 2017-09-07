@@ -186,7 +186,6 @@ public class TodoManager {
 
     //Saves the start time of a sport todo
     public boolean saveStartTime(String todoID) {
-        Calendar cal = Calendar.getInstance();
         boolean successful = false;
         try {
             SQLiteDatabase db = oDbHelper.getWritableDatabase();
@@ -212,7 +211,6 @@ public class TodoManager {
     //Saves the start time of a sport todo
     public boolean calculateUsedTime(String todoID) {
         boolean successful = false;
-        Calendar cal = Calendar.getInstance();
 
         String selectQuery = "SELECT " + DBScheme.SportTodo._ID + ", " +
                 DBScheme.SportTodo.COLUMN_NAME_TIME_ON_START + ", " +
