@@ -154,7 +154,7 @@ public class TodoManager {
             int timeused_minutes = timeused_seconds / 60;
             String timeused_final;
 
-            if (timeused_minutes > 0) {
+            if (timeused_minutes >= 1) {
                 timeused_final = String.valueOf(timeused_minutes) + " min";
             } else {
                 timeused_final = String.valueOf(timeused_seconds) + " sec";
