@@ -4,11 +4,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import zli.todoplus.database.DBScheme;
 import zli.todoplus.database.TodoDBOpenHelper;
 
@@ -88,7 +90,7 @@ public class TodoManager {
 
             final String databaseId = Long.toString(id);
 
-            if(priority == 1){
+            if (priority == 1) {
                 list.put(count, title + ";" + "dateTodo;" + databaseId + ";" + state + ";" + newReminderDate + " | PRIORITY");
             } else {
                 list.put(count, title + ";" + "dateTodo;" + databaseId + ";" + state + ";" + newReminderDate + "");
@@ -141,20 +143,30 @@ public class TodoManager {
             int stepsdone = cursor.getInt(cursor.getColumnIndexOrThrow(DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE));
             int timeused = cursor.getInt(cursor.getColumnIndexOrThrow(DBScheme.SportTodo.COLUMN_NAME_TIME_USED));
 
+            int timeused_seconds = (timeused / 1000);
+            int timeused_minutes = timeused_seconds / 60;
+            String timeused_final;
+
+            if (timeused_minutes > 0) {
+                timeused_final = String.valueOf(timeused_minutes) + " sec";
+            } else {
+                timeused_final = String.valueOf(timeused_seconds) + " sec";
+            }
+
             final String databaseId = Long.toString(id);
 
-            if(state.equals("active")){
-                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state+ ";" + stepsdone + " / " +
-                        stepgoal + " steps done. | ACTIVE");
-            } else if(state.equals("inactive")){
-                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state+ ";" + stepsdone + " / " +
-                        stepgoal + " steps done. | INACTIVE");
-            } else if(state.equals("done")){
-                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state+ ";" + stepsdone + " / " +
-                        stepgoal + " steps done. | GOAL REACHED");
+            if (state.equals("active")) {
+                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state + ";" + stepsdone + " / " +
+                        stepgoal + " steps done. | Time used: "  + timeused_final);
+            } else if (state.equals("inactive")) {
+                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state + ";" + stepsdone + " / " +
+                        stepgoal + " steps done. | Time used: " + timeused_final);
+            } else if (state.equals("done")) {
+                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state + ";" + stepsdone + " / " +
+                        stepgoal + " steps done. | Time used: "+ timeused_final);
             } else {
-                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state+ ";" + stepsdone + " / " +
-                        stepgoal + " steps done. | UNKNOWN STATE");
+                list.put(count, title + ";" + "sportTodo;" + databaseId + ";" + state + ";" + stepsdone + " / " +
+                        stepgoal + " steps done. | Time used: " + timeused_final);
             }
 
             count++;
@@ -165,11 +177,86 @@ public class TodoManager {
         return list;
     }
 
-    //Function To remove Todo. Is automatically removed from database.
-    public boolean removeTodo(Todo todo) {
-        todoList.remove(todo);
+    //Saves the start time of a sport todo
+    public boolean saveStartTime(String todoID) {
+        Calendar cal = Calendar.getInstance();
+        boolean successful = false;
+        try {
+            SQLiteDatabase db = oDbHelper.getWritableDatabase();
+            ContentValues values = new ContentValues();
 
-        return true;
+            //Sensor changed --> Add 1
+            values.put(DBScheme.SportTodo.COLUMN_NAME_TIME_ON_START, currentTimeMillis());
+
+            int row = db.update(DBScheme.SportTodo.TABLE_NAME,
+                    values,
+                    DBScheme.SportTodo._ID + " = " + todoID,
+                    null);
+
+            if (row == 1) {
+                successful = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return successful;
+    }
+
+    //Saves the start time of a sport todo
+    public boolean calculateUsedTime(String todoID) {
+        boolean successful = false;
+        Calendar cal = Calendar.getInstance();
+
+        String selectQuery = "SELECT " + DBScheme.SportTodo._ID + ", " +
+                DBScheme.SportTodo.COLUMN_NAME_TIME_ON_START + ", " +
+                DBScheme.SportTodo.COLUMN_NAME_TIME_USED +
+                " FROM " +
+                DBScheme.SportTodo.TABLE_NAME + " WHERE " + DBScheme.SportTodo._ID + " = " + todoID;
+
+        SQLiteDatabase db = oDbHelper.getWritableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        c.moveToFirst();
+
+        //Calculate new used time
+        Integer alreadyUsedTime = c.getInt((c.getColumnIndex(DBScheme.SportTodo.COLUMN_NAME_TIME_USED)));
+        Integer timeOnStart = c.getInt((c.getColumnIndex(DBScheme.SportTodo.COLUMN_NAME_TIME_ON_START)));
+        Integer additionalUsedTime = currentTimeMillis() - timeOnStart;
+        Integer newUsedTime = alreadyUsedTime + additionalUsedTime;
+
+        System.out.println("new used time: " + newUsedTime);
+
+        //Update in database
+        try {
+            ContentValues values = new ContentValues();
+
+            //Sensor changed --> Add 1
+            values.put(DBScheme.SportTodo.COLUMN_NAME_TIME_USED, newUsedTime);
+
+            System.out.println("updating value in db");
+
+            int row = db.update(DBScheme.SportTodo.TABLE_NAME,
+                    values,
+                    DBScheme.SportTodo._ID + " = " + todoID,
+                    null);
+
+
+            System.out.println("updated value in db");
+
+            if (row == 1) {
+                successful = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return successful;
+    }
+
+    public static int currentTimeMillis() {
+        //Returns current time in miliseconds as integer
+        System.out.println("returned time in milliseconds");
+        return (int) (System.currentTimeMillis() % Integer.MAX_VALUE);
     }
 
     //Create New Date Todo in Database
@@ -393,8 +480,8 @@ public class TodoManager {
         int currentStepCounts = 0;
         int todoID, stepGoal;
 
-        String selectQuery = "SELECT " + DBScheme.SportTodo._ID +", " +
-                DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE +", " +
+        String selectQuery = "SELECT " + DBScheme.SportTodo._ID + ", " +
+                DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE + ", " +
                 DBScheme.SportTodo.COLUMN_NAME_STEP_GOAL +
                 " FROM " +
                 DBScheme.SportTodo.TABLE_NAME + " WHERE " + DBScheme.SportTodo.COLUMN_NAME_STATE + " = 'active'";
@@ -411,13 +498,13 @@ public class TodoManager {
                 currentStepCounts = c.getInt((c.getColumnIndex(DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE)));
                 stepGoal = c.getInt((c.getColumnIndex(DBScheme.SportTodo.COLUMN_NAME_STEP_GOAL)));
 
-                System.out.println("got values: " + todoID + " / " + currentStepCounts+ " / " + stepGoal);
+                System.out.println("got values: " + todoID + " / " + currentStepCounts + " / " + stepGoal);
 
                 try {
                     SQLiteDatabase db2 = oDbHelper.getWritableDatabase();
                     ContentValues values = new ContentValues();
 
-                    if(!(currentStepCounts >= stepGoal)){
+                    if (!(currentStepCounts >= stepGoal)) {
                         //Sensor changed --> Increase StepsDone + 1
                         values.put(DBScheme.SportTodo.COLUMN_NAME_STEPS_DONE, ++currentStepCounts);
 

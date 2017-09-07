@@ -91,7 +91,8 @@
             android:focusableInTouchMode="false"
             android:hint="Reminder Date"
             android:inputType="textPersonName"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:layout_alignEnd="@+id/priorityTodoToggle" />
 
     </RelativeLayout>
 
